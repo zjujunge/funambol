@@ -1,0 +1,138 @@
+<!-- Startup the application, authenticate and delete all contacts -->
+
+<Script>
+  <BeginTest>
+    <Arg>Startup the application</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <RemoveAccount/>
+  <StartMainApp/>
+
+  <WaitForActivity>
+    <Arg>AndroidSignupScreen</Arg>
+    <Arg>5</Arg>
+  </WaitForActivity>
+
+  <!-- Goto login screen -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>6</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyFire</Arg>
+  </KeyPress>
+  
+  <WaitForActivity>
+    <Arg>AndroidLoginScreen</Arg>
+    <Arg>5</Arg>
+  </WaitForActivity>
+
+  <!-- Enter credentials -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+  </KeyPress>
+  <WriteString>
+    <Arg>${username}</Arg>
+  </WriteString>
+  <KeyPress>
+    <Arg>KeyFire</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+  </KeyPress>
+  <WriteString>
+    <Arg>${password}</Arg>
+  </WriteString>
+  <KeyPress>
+    <Arg>KeyFire</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyRight</Arg>
+    <Arg>30</Arg>
+  </KeyPress>
+  <Wait><Arg>2</Arg></Wait>
+  <KeyPress>
+    <Arg>KeyDelete</Arg>
+    <Arg>30</Arg>
+  </KeyPress>
+  <WriteString>
+    <Arg>${url}</Arg>
+  </WriteString>
+
+  <!-- Login -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+  </KeyPress>
+
+  <!-- On Droid X the keydown is taken twice, so we need to go up -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicemodel}</Arg>
+        <Arg>DROIDX</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <KeyPress>
+        <Arg>KeyUp</Arg>
+      </KeyPress>
+    </Then>
+  </Condition>
+
+  <KeyPress>
+    <Arg>KeyFire</Arg>
+  </KeyPress>
+  <WaitForAuthToComplete>
+    <Arg>10</Arg>
+    <Arg>60</Arg>
+  </WaitForAuthToComplete>
+
+  <WaitForActivity>
+    <Arg>AndroidHomeScreen</Arg>
+    <Arg>120</Arg>
+  </WaitForActivity>
+
+  <Wait>
+    <Arg>3</Arg>
+  </Wait>
+  
+  <!-- Contact import -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${contactsimportrequired}</Arg>
+        <Arg>true</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <KeyPress>
+        <Arg>KeyDown</Arg>
+        <Arg>6</Arg>
+      </KeyPress>
+      <KeyPress>
+        <Arg>KeyRight</Arg>
+      </KeyPress>
+      <KeyPress>
+        <Arg>KeyFire</Arg>
+      </KeyPress>
+      <Wait>
+        <Arg>1</Arg>
+      </Wait>
+      <KeyPress>
+        <Arg>KeyRight</Arg>
+      </KeyPress>
+      <KeyPress>
+        <Arg>KeyFire</Arg>
+      </KeyPress>
+    </Then>
+  </Condition>
+
+  <EndTest/>
+</Script>

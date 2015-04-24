@@ -1,0 +1,14 @@
+<Script>
+  <BeginTest>
+    <Arg>File 05</Arg>
+    <Arg>incremental05</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Add files on server and download on device -->
+  <Include><Arg>../util/addtwoitemsonserver.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

@@ -1,0 +1,91 @@
+<Script>
+  <BeginTest>
+    <Arg>syncfiles110</Arg>
+    <Arg>syncfiles110</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- 
+  
+    Scenario:
+      Add a txt file to the MediaHub folder. Sync.
+      Rename the file twice. Sync.
+
+    Expected:
+      The file has been correctly renamed on the portal.
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <AddMedia>
+    <Arg>Files</Arg>
+    <Arg>../data/rename01.txt</Arg>
+  </AddMedia>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- rename the file twice -->
+  <RenameMedia>
+    <Arg>Files</Arg>
+    <Arg>rename01.txt</Arg>
+    <Arg>renamed.txt</Arg>
+  </RenameMedia>
+  <RenameMedia>
+    <Arg>Files</Arg>
+    <Arg>renamed.txt</Arg>
+    <Arg>renamed_twice.txt</Arg>
+  </RenameMedia>
+  
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+  
+  <!-- Check file integrity -->
+  <CheckMediaContentIntegrity>
+    <Arg>Files</Arg>
+    <Arg>renamed_twice.txt</Arg>
+  </CheckMediaContentIntegrity>
+
+  <EndTest/>
+</Script>

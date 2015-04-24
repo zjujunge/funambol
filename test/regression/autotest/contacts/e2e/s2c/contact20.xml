@@ -1,0 +1,58 @@
+<Script>
+  <!-- SyncContacts20 -->
+  <!-- On the Server add multiple records, modify multiple records and delete multiple records in Contacts section / Sync -->
+  <BeginTest>
+    <Arg>contact20</Arg>
+    <Arg>contact20</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- This include create new multiple records of Contacts (Giuseppe Rossi, Mario Bianchi, Carlo Arancio, Pallino Pinko) and do a fast sync -->
+  <Include><Arg>addfourrecords.xml</Arg></Include>
+  <!-- Create on Server side a new Contact (Mario Rossi); -->
+  <SaveContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Create on Server side a new Contact (Luca Bianchi) -->
+  <SaveContactOnServer>
+    <Arg>Luca</Arg>
+    <Arg>Bianchi</Arg>
+  </SaveContactOnServer>
+  <SaveContactOnServer>
+    <Arg>Giuseppe</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Load a Contact on Server side and modify some fields of this -->
+  <SaveContactOnServer>
+    <Arg>Carlo</Arg>
+    <Arg>Arancio</Arg>
+  </SaveContactOnServer>
+  <!-- Delete Contacts On Server Side -->
+  <DeleteContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Bianchi</Arg>
+  </DeleteContactOnServer>
+  <DeleteContactOnServer>
+    <Arg>Pallino</Arg>
+    <Arg>Pinko</Arg>
+  </DeleteContactOnServer>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>200</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+    <Arg>2</Arg>
+    <Arg>2</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

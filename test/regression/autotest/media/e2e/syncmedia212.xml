@@ -1,0 +1,85 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia212</Arg>
+    <Arg>syncmedia212</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!--
+     Two-way First sync test: add one picture each side before first application run. 
+     Only picture on device should be uploaded to the server.
+  -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add one picture on server and one on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMediaOnServer>
+
+  <!-- Force First Sync -->
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!--
+     Forced First Synchronization with an item present on client 
+     (no include old pictures check) and an item on server
+  -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- 
+       Phones and tablets have a different behavior here. The phone shall not
+       download anything, while the tablet shall download the picture sent to
+       the server
+  -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicetype}</Arg>
+        <Arg>phone</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <CheckExchangedData>
+        <Arg>${sourcename}</Arg>
+        <Arg>1</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+      </CheckExchangedData>
+      <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>1</Arg>
+      </CheckMediaCount>
+    </Then>
+    <Else>
+      <CheckExchangedData>
+        <Arg>${sourcename}</Arg>
+        <Arg>1</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>1</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+      </CheckExchangedData>
+      <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>2</Arg>
+      </CheckMediaCount>
+    </Else>
+  </Condition>
+
+  <EndTest/>
+</Script>

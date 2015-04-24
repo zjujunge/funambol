@@ -1,0 +1,98 @@
+<Script>
+  <!--
+    testlist 4882_9, 4882_10, 4882_11
+  -->
+  <BeginTest ><Arg>"push 21 - test sync starts from add / update / delete contacts push"</Arg></BeginTest >
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <!--
+    Add a contact
+  -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765979</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Contacts</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 30</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <!--
+    Load a Contact on Device side and modify one field of this
+  -->
+  <LoadContact>
+    <Arg>Test</Arg>
+    <Arg>Contact</Arg>
+  </LoadContact>
+  <SetContactField>
+    <Arg>EmailHome</Arg>
+    <Arg>test.contact@universitàdipavia.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Contacts</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 30</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 0</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <!--
+    Delete a contact
+  -->
+  <DeleteContact>
+    <Arg>Test</Arg>
+    <Arg> Contact</Arg>
+  </DeleteContact>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Contacts</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 30</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <EndTest/>
+</Script>

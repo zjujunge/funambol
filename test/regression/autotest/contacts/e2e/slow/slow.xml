@@ -1,0 +1,16 @@
+<Script>
+  <BeginTest>
+    <Arg>Contacts End2End Slow Sync</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <Include><Arg>contact37.xml</Arg></Include>
+  <Include><Arg>contact38.xml</Arg></Include>
+  <Include><Arg>contact44.xml</Arg></Include>
+  <Include><Arg>contact52.xml</Arg></Include>
+  <Include><Arg>contact56.xml</Arg></Include>
+  <Include><Arg>contact58.xml</Arg></Include>
+  <EndTest/>
+</Script>

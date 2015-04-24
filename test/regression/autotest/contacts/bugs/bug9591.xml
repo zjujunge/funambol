@@ -1,0 +1,80 @@
+<Script>
+  <!-- TestCase for Bug #9591 - Contacts fast sync: duplicate items when canceled or interruped sync -->
+  <BeginTest>
+    <Arg>bug9591</Arg>
+    <Arg>bug9591</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <Include><Arg>../e2e/deleteall.xml</Arg></Include>
+  <!-- Create 5 contacts on server -->
+  <SaveContactOnServer>
+    <Arg>Contact #1</Arg>
+    <Arg>Test</Arg>
+  </SaveContactOnServer>
+  <SaveContactOnServer>
+    <Arg>Contact #2</Arg>
+    <Arg>Test</Arg>
+  </SaveContactOnServer>
+  <SaveContactOnServer>
+    <Arg>Contact #3</Arg>
+    <Arg>Test</Arg>
+  </SaveContactOnServer>
+  <SaveContactOnServer>
+    <Arg>Contact #4</Arg>
+    <Arg>Test</Arg>
+  </SaveContactOnServer>
+  <SaveContactOnServer>
+    <Arg>Contact #5</Arg>
+    <Arg>Test</Arg>
+  </SaveContactOnServer>
+  <CheckContactsCountOnServer><Arg>5</Arg></CheckContactsCountOnServer>
+  <!-- Fire the synchronization -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <!-- Simulate sync cancelled after receiving the second item -->
+  <CancelSyncAfterPhase>
+    <Arg>Receiving</Arg>
+    <Arg>2</Arg>
+  </CancelSyncAfterPhase>
+  <!-- Wait the sync to complete -->
+  <WaitForSyncToComplete>
+    <Arg>6</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <Wait><Arg>5</Arg></Wait>
+  <!-- Check we received only 2 contacts -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 2</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+  <CheckContactCount>
+    <Arg> 2</Arg>
+  </CheckContactsCount>
+  <Wait><Arg>2</Arg></Wait>
+  <!-- Fire the synchronization -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Check there is no duplicates -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 3</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+  <CheckContactsCount>
+    <Arg> 5</Arg>
+  </CheckContactsCount>
+  <EndTest/>
+</Script>

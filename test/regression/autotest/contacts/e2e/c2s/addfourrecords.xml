@@ -1,0 +1,102 @@
+<!--
+  SyncContacts16
+  Add multiple records on Device in the Contacts section / Sync
+-->
+
+<Script>
+  <!-- This test cannot have a name because it is included by others -->
+  <BeginTest>
+    <Arg>addfourrecords</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>c2s</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- include in this test deleteall test file for delete all contacts on both sides -->
+  <Include><Arg>../deleteall.xml</Arg></Include>
+
+  <!-- Create on Device side a new Contact (Luca Bianchi) -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg>Luca</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>Bianchi</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Website</Arg>
+    <Arg>www.lucabianchi.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <!-- Create on Device side a new Contact (Mario Bianchi); -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg>Mario</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>Bianchi</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Website</Arg>
+    <Arg>www.mariobianchi.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <!-- Create on Device side a new Contact (Giuseppe Rossi); -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg>Giuseppe</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>Rossi</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Website</Arg>
+    <Arg>www.giusepperossi.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <!-- Create on Device side a new Contact (Pallino Pinko); -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg>Pallino</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>Pinko</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Website</Arg>
+    <Arg>www.pallinopinko.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>200</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+
+  <EndTest/>
+</Script>

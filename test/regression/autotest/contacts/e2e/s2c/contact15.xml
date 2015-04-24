@@ -1,0 +1,14 @@
+<Script>
+  <!-- SyncContacts15 -->
+  <!-- Add multiple records on the Server in the Contacts section / Sync -->
+  <BeginTest>
+    <Arg>"Add multiple records on the Server in the Contacts section / Sync"</Arg>
+    <Arg>contact15</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- include in this test deleteall test file for delete all contacts on both sides -->
+  <Include><Arg>addfourrecords.xml</Arg></Include>
+  <EndTest/>
+</Script>

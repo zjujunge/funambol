@@ -1,0 +1,157 @@
+<Script>
+  <BeginTest>
+    <Arg>Pictures regression</Arg>
+    <Arg>*</Arg>
+    <Arg>picture</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <!-- Set all the variables -->
+  <SetVariable>
+    <Arg>datadirectory</Arg>
+    <Arg>../../pictures/data</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>utildirectory</Arg>
+    <Arg>../../pictures/util</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>sourcetag</Arg>
+    <Arg>picture</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>sourcename</Arg>
+    <Arg>Pictures</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item0</Arg>
+    <Arg>img01.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item1</Arg>
+    <Arg>img02.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item2</Arg>
+    <Arg>img03.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item3</Arg>
+    <Arg>img04.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item4</Arg>
+    <Arg>img05.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item5</Arg>
+    <Arg>img06.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item6</Arg>
+    <Arg>img07.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item7</Arg>
+    <Arg>img08.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item8</Arg>
+    <Arg>img09.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item9</Arg>
+    <Arg>img10.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item10</Arg>
+    <Arg>img11.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item11</Arg>
+    <Arg>img12.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item12</Arg>
+    <Arg>img13.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>iteminvalid</Arg>
+    <Arg>imginvalid.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item0renamed</Arg>
+    <Arg>img01-renamed.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item1renamed</Arg>
+    <Arg>img02-renamed.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>itembig0</Arg>
+    <Arg>img01.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>itembig1</Arg>
+    <Arg>img02.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item_strange_name</Arg>
+    <Arg>a&#224;&#249;&amp;_&#x20A4;.jpg</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>homebuttonposition</Arg>
+    <Arg>2</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>settingsdirectionposition</Arg>
+    <Arg>6</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>toggleuploaderposition</Arg>
+    <Arg>7</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>uploadeditems203</Arg>
+    <Arg>6</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>firstsyncuploadlimit</Arg>
+    <Arg>5</Arg>
+  </SetVariable>
+
+  <!-- Clean up any possible leftovers from previous test -->
+  <RestoreLocalStorage/>
+
+  <Include><Arg>e2e/e2e.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

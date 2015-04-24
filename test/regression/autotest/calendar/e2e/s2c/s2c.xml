@@ -1,0 +1,22 @@
+<Script>
+  <BeginTest>
+    <Arg>Calendar End2End S2C</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <Include><Arg>sync01.xml</Arg></Include>
+  <Include><Arg>sync03.xml</Arg></Include>
+  <Include><Arg>sync07.xml</Arg></Include>
+  <Include><Arg>sync11.xml</Arg></Include>
+  <Include><Arg>sync13.xml</Arg></Include>
+  <Include><Arg>sync15.xml</Arg></Include>
+  <Include><Arg>sync17.xml</Arg></Include>
+  <Include><Arg>sync18.xml</Arg></Include>
+  <Include><Arg>sync20.xml</Arg></Include>
+  <Include><Arg>sync22.xml</Arg></Include>
+  <Include><Arg>sync24.xml</Arg></Include>
+  <Include><Arg>sync26.xml</Arg></Include>
+  <EndTest/>
+</Script>

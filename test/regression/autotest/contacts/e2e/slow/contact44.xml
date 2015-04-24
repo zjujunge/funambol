@@ -1,0 +1,47 @@
+<Script>
+  <!-- SyncContacts44 -->
+  <!-- On server side modify multiple records in the Contacts section / Slow Sync -->
+  <BeginTest>
+    <Arg>contact44</Arg>
+    <Arg>contact44</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- This include create new multiple records of Contacts (Giuseppe Rossi, Mario Bianchi, Carlo Arancio, Pallino Pinko) and do a fast sync -->
+  <Include><Arg>../s2c/addfourrecords.xml</Arg></Include>
+  <!-- Load a Contact on Server side and modify some fields of this -->
+  <SaveContactOnServer>
+    <Arg>Giuseppe</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Load a Contact on Server side and modify some fields of this -->
+  <SaveContactOnServer>
+    <Arg>Carlo</Arg>
+    <Arg>Arancio</Arg>
+  </SaveContactOnServer>
+  <!-- Load a Contact on Server side and modify some fields of this -->
+  <SaveContactOnServer>
+    <Arg>Pallino</Arg>
+    <Arg>Pinko</Arg>
+  </SaveContactOnServer>
+  <!-- Force a Slow Sync -->
+  <ForceSlowSync><Arg>Contacts</Arg></ForceSlowSync>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

@@ -1,0 +1,57 @@
+<Script>
+  <!--
+    testlist 4882_15, 4882_16
+  -->
+  <BeginTest ><Arg>"push 22 - test sync starts from add / delete pictures push"</Arg></BeginTest >
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <!--
+    Add a picture
+  -->
+  <AddPicture><Arg>test-picture-2.jpg</Arg></AddPicture>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Pictures</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Pictures</Arg>
+    <Arg> 30</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+    Delete a picture
+  -->
+  <DeletePicture><Arg>test-picture-2.jpg</Arg></DeletePicture>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Pictures</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Pictures</Arg>
+    <Arg> 30</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <EndTest />
+</Script>

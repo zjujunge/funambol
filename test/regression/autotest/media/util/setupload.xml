@@ -1,0 +1,32 @@
+<Script>  
+  <!-- Change settings to Upload Only Sync -->
+  <!-- Enter settings screen -->
+  <KeyPress><Arg>KeyMenu</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+  <!-- Find Pictures Sync Modes -->
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>${settingsdirectionposition}</Arg>
+  </KeyPress>
+  <!-- Change Picture Sync Mode to Upload Only Sync -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress> 
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <!-- Save settings -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>10</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+</Script>

@@ -1,0 +1,22 @@
+<Script>
+  <BeginTest>
+    <Arg>Contacts End2End S2C</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <Include><Arg>contact05.xml</Arg></Include>
+  <Include><Arg>contact07.xml</Arg></Include>
+  <Include><Arg>contact09.xml</Arg></Include>
+  <Include><Arg>contact11.xml</Arg></Include>
+  <Include><Arg>contact13.xml</Arg></Include>
+  <Include><Arg>contact17.xml</Arg></Include>
+  <Include><Arg>contact18.xml</Arg></Include>
+  <Include><Arg>contact20.xml</Arg></Include>
+  <Include><Arg>contact22.xml</Arg></Include>
+  <Include><Arg>contact24.xml</Arg></Include>
+  <Include><Arg>contact26.xml</Arg></Include>
+  <Include><Arg>contact60.xml</Arg></Include>
+  <EndTest/>
+</Script>

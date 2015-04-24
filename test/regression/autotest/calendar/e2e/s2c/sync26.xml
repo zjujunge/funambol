@@ -1,0 +1,51 @@
+<Script>
+  <BeginTest><Arg>Sync18</Arg></BeginTest>
+  <Include><Arg>../deleteall.xml</Arg></Include>
+  <!-- Create two events on the server. This is needed to have the update and the -->
+  <!-- delete -->
+  <SaveEventOnServer><Arg>Sync18_del</Arg></SaveEventOnServer>
+  <!-- Perform a sync -->
+  <KeyPress>
+    <Arg>KeyUp</Arg>
+    <Arg> 5</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg> 1</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>10</Arg>
+    <Arg> 120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Now finalize the test -->
+  <SaveEventOnServer><Arg>Sync18_add</Arg></SaveEventOnServer>
+  <DeleteEventOnServer><Arg>Sync18_del</Arg></DeleteEventOnServer>
+  <!-- Perform a sync -->
+  <KeyPress>
+    <Arg>KeyUp</Arg>
+    <Arg> 5</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg> 1</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>10</Arg>
+    <Arg> 120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+  </CheckExchangedData>
+  <CheckEventsCount>
+    <Arg> 1</Arg>
+  </CheckEventsCount>
+  <EndTest/>
+</Script>

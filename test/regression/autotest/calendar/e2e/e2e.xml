@@ -1,0 +1,14 @@
+<Script>
+  <BeginTest>
+    <Arg>Calendar End2End</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <Include><Arg>c2s/c2s.xml</Arg></Include>
+  <Include><Arg>s2c/s2c.xml</Arg></Include>
+  <Include><Arg>slow/slow.xml</Arg></Include>
+  <Include><Arg>conflict/conflict.xml</Arg></Include>
+  <EndTest/>
+</Script>

@@ -1,0 +1,16 @@
+<Script>
+  <!-- SyncContacts01 -->
+  <!-- On the Server add a record in the Contacts section filling in all possible fields / Sync -->
+  <BeginTest>
+    <Arg>"On the Server add a record in the Contacts section filling in all possible fields / Sync"</Arg>
+    <Arg>contact01</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- include in this test deleteall test file for delete all contacts on both sides -->
+  <Include><Arg>addonerecord.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

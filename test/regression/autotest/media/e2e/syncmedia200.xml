@@ -1,0 +1,38 @@
+<Script>
+  <BeginTest>
+      <Arg>syncmedia200</Arg>
+      <Arg>syncmedia200</Arg>
+      <Arg>${sourcetag}</Arg>
+      <Arg>*</Arg>
+      <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- Sync mode set to 'Upload Only' -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  
+  <!-- Force First Sync -->
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+
+  <!-- Start a pictures First Sync, no items present -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

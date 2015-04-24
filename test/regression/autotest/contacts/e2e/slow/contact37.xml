@@ -1,0 +1,36 @@
+<Script>
+  <!-- On server side modify all fields for the record in the Contacts section / Slow Sync -->
+  <BeginTest>
+    <Arg>contact37</Arg>
+    <Arg>contact37</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- This include create a record of Contact (Mario Rossi) and do a slow sync -->
+  <Include><Arg>contact36.xml</Arg></Include>
+  <!-- Load a Contact on Server side and modify all fields of this -->
+  <SaveContactOnServer><Arg>{&quot;firstname&quot;=&quot;Mario&quot;,
+                             &quot;lastname&quot;=&quot;Rossi&quot;,
+                             &quot;displayname&quot;=&quot;Zio Mario&quot;}</Arg>
+  </SaveContactOnServer>
+  <!-- Force a Slow Sync -->
+  <ForceSlowSync><Arg>Contacts</Arg></ForceSlowSync>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

@@ -1,0 +1,14 @@
+<Script>
+  <BeginTest>
+    <Arg>Calendar S2C</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>s2c</Arg>
+    <Arg>local</Arg>
+  </BeginTest>
+
+  <Include><Arg>language/language.xml</Arg></Include>
+  <Include><Arg>recurrences/recurrences.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

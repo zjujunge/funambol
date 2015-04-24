@@ -1,0 +1,61 @@
+<Script>
+  <BeginTest>
+    <Arg>Calendar Recurrences S2C</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>s2c</Arg>
+    <Arg>local</Arg>
+  </BeginTest>
+
+  <!--
+     Floating events (local without timezone)
+  -->
+  <Include><Arg>floating.xml</Arg></Include>
+  <Include><Arg>floating_allday.xml</Arg></Include>
+
+  <!--
+     Daily events
+  -->
+  <Include><Arg>daily_everyday_noend.xml</Arg></Include>
+  <Include><Arg>daily_everyday_noend_allday.xml</Arg></Include>
+  <Include><Arg>daily_everyday_enddate_allday.xml</Arg></Include>
+  <Include><Arg>daily_everyday_10occurrences_allday.xml</Arg></Include>
+  <Include><Arg>daily_every15days_noend_allday.xml</Arg></Include>
+  <Include><Arg>daily_every5days_noend_allday.xml</Arg></Include>
+  <Include><Arg>daily_every2days_noend_allday.xml</Arg></Include>
+  <Include><Arg>daily_weekday_10occurrences.xml</Arg></Include>
+  <Include><Arg>daily_weekday_enddate.xml</Arg></Include>
+  <Include><Arg>daily_weekday_noend.xml</Arg></Include>
+
+  <!--
+     Monthly events
+  -->
+  <Include><Arg>monthly_every2months_10occurrences.xml</Arg></Include>
+  <Include><Arg>monthly_every3months_noend.xml</Arg></Include>
+  <Include><Arg>monthly_everymonth_noend_allday.xml</Arg></Include>
+  <Include><Arg>monthly_secondtuesday_every2months_10occurrences_allday.xml</Arg></Include>
+  <Include><Arg>monthly_secondtuesday_every3months_noend.xml</Arg></Include>
+  <Include><Arg>monthly_secondtuesday_everymonth_enddate_allday.xml</Arg></Include>
+  <Include><Arg>monthly_lastWednesday_every2months_5occurrences_allday.xml</Arg></Include>
+
+  <!--
+     Weekly events
+  -->
+  <Include><Arg>weekly_2days_every2week_noend_allday.xml</Arg></Include>
+  <Include><Arg>weekly_2days_every2weeks_enddate.xml</Arg></Include>
+  <Include><Arg>weekly_2days_every6week_100occurrences.xml</Arg></Include>
+  <Include><Arg>weekly_3days_every3week_10occurrences.xml</Arg></Include>
+  <Include><Arg>weekly_everytue_10occ_allday.xml</Arg></Include>
+  <Include><Arg>weekly_everytue_noend_allday.xml</Arg></Include>
+
+  <!--
+     Yearly events
+  -->
+  <Include><Arg>yearly_everyyear_enddate_allday.xml</Arg></Include>
+  <Include><Arg>yearly_everyyear_noend_allday.xml</Arg></Include>
+  <Include><Arg>yearly_firstsaturday_january_enddate.xml</Arg></Include>
+  <Include><Arg>yearly_lasttuesday_january_10occurrences_allday.xml</Arg></Include>
+  <Include><Arg>yearly_secondtuesday_january_10occurrences.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

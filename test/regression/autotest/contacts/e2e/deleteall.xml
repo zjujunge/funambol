@@ -1,0 +1,22 @@
+<Script>
+  <BeginTest>
+    <Arg>DeleteAll</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <DeleteAllContactsOnServer/>
+  <DeleteAllContacts/>
+  <ForceSlowSync><Arg>Contacts</Arg></ForceSlowSync>
+
+  <Wait><Arg>1</Arg></Wait>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <EndTest/>
+</Script>

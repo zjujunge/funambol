@@ -1,0 +1,81 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia509</Arg>
+    <Arg>syncmedia509</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add one file on the server -->
+  <AddMedia>
+    <Arg>Files</Arg>
+    <Arg>../data/file01</Arg>
+  </AddMedia>
+
+  <!-- Prepare the sync to be interrupted while downloading -->
+  <InterruptItemUpload>
+    <Arg>file01</Arg>
+    <Arg>1023</Arg>
+  </InterruptItemUpload>
+ 
+  <!-- Sync everything -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Check the status for the files source -->
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCountOnServer>
+
+  <DeleteMedia>
+    <Arg>Files</Arg>
+    <Arg>file01</Arg>
+  </DeleteMedia>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <!-- Check the status for the files source -->
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCountOnServer>
+
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCount>
+</Script>

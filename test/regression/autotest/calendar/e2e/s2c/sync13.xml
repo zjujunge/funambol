@@ -1,0 +1,30 @@
+<Script>
+  <BeginTest><Arg>Sync13</Arg></BeginTest>
+  <Include><Arg>sync15.xml</Arg></Include>
+  <DeleteEventOnServer><Arg>Sync15_01</Arg></DeleteEventOnServer>
+  <DeleteEventOnServer><Arg>Sync15_02</Arg></DeleteEventOnServer>
+  <DeleteEventOnServer><Arg>Sync15_03</Arg></DeleteEventOnServer>
+  <!-- Perform a sync -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg> 1</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg> 120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>3</Arg>
+  </CheckExchangedData>
+  <CheckEventsCount>
+    <Arg> 0</Arg>
+  </CheckEventsCount>
+  <EndTest/>
+</Script>

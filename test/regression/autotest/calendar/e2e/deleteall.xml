@@ -1,0 +1,25 @@
+<Script>
+  <BeginTest>
+    <Arg>DeleteAll</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+  <DeleteAllEventsOnServer/>
+  <DeleteAllEvents/>
+  <ForceSlowSync><Arg>Calendar</Arg></ForceSlowSync>
+  <Wait><Arg>5</Arg></Wait>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>60</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckEventsCount>
+    <Arg>0</Arg>
+  </CheckEventsCount>
+
+  <EndTest/>
+</Script>

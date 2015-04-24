@@ -1,0 +1,97 @@
+<Script>
+  <!--
+    Referring to testlist 4882_24
+  -->
+
+  <BeginTest("Test 4882_24 - adding and pushing 4 pictures ><Arg>10 sec. interval)"</Arg></BeginTest("Test 4882_24 - adding and pushing 4 pictures >
+
+  <!--
+     Enable device Auto Sync and client C2S push
+  -->
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+    Add pictures, 10 seconds interval between
+  -->
+  <AddPicture><Arg>test-picture-1.jpg</Arg></AddPicture>
+  <CheckSyncPending><Arg>Pictures</Arg></CheckSyncPending>
+
+  <Wait><Arg>10</Arg></Wait>
+
+  <AddPicture><Arg>test-picture-2.jpg</Arg></AddPicture>
+  <CheckSyncPending><Arg>Pictures</Arg></CheckSyncPending>
+
+  <Wait><Arg>10</Arg></Wait>
+
+  <AddPicture><Arg>test-picture-3.jpg</Arg></AddPicture>
+  <CheckSyncPending><Arg>Pictures</Arg></CheckSyncPending>
+
+  <WaitForSyncPhase>
+    <Arg>Sending</Arg>
+    <Arg> 1</Arg>
+    <Arg> 30</Arg>
+  </WaitForSyncPhase>
+
+  <AddPicture><Arg>test-picture-4.jpg</Arg></AddPicture>
+
+  <WaitForSyncToComplete>
+    <Arg>Pictures</Arg>
+    <Arg> 5</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg> 3</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <WaitForSyncToComplete>
+    <Arg>Pictures</Arg>
+    <Arg> 10</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <!--
+     Remove all the picture we added before and sync
+  -->
+  <DeletePicture><Arg>test-picture-1.jpg</Arg></DeletePicture>
+  <DeletePicture><Arg>test-picture-2.jpg</Arg></DeletePicture>
+  <DeletePicture><Arg>test-picture-3.jpg</Arg></DeletePicture>
+  <DeletePicture><Arg>test-picture-4.jpg</Arg></DeletePicture>
+
+  <WaitForSyncToComplete>
+    <Arg>Pictures</Arg>
+    <Arg> 30</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 4</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Wait><Arg>2</Arg></Wait>
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <EndTest/>
+
+
+</Script>

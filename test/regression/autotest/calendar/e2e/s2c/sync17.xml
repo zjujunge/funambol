@@ -1,0 +1,48 @@
+<Script>
+  <BeginTest><Arg>Sync17</Arg></BeginTest>
+  <Include><Arg>../deleteall.xml</Arg></Include>
+  <!-- Create an event on server -->
+  <SaveEventOnServer><Arg>Sync17_Server</Arg></SaveEventOnServer>
+  <!-- Create an event on client -->
+  <CreateEmptyEvent/>
+  <SetEventField>
+    <Arg>Summary</Arg>
+    <Arg>Sync17_Client</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>Start</Arg>
+    <Arg>20090113</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>End</Arg>
+    <Arg>20090114</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>AllDay</Arg>
+    <Arg>1</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <!-- Perform a sync -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>1</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckEventsCount>
+    <Arg>2</Arg>
+  </CheckEventsCount>
+  <EndTest/>
+</Script>

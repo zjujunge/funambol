@@ -1,0 +1,16 @@
+<Script>
+  <BeginTest>
+    <Arg>Pictures regression</Arg>
+    <Arg>*</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <!-- Clean up any possible leftovers from previous test -->
+  <RestoreLocalStorage/>
+
+  <Include><Arg>e2e/e2e.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

@@ -1,0 +1,51 @@
+<Script>
+  <BeginTest><Arg>Sync58</Arg></BeginTest>
+  <Include><Arg>sync50.xml</Arg></Include>
+  <!-- Add a new event on device -->
+  <CreateEmptyEvent/>
+  <SetEventField>
+    <Arg>Summary</Arg>
+    <Arg>Sync56</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>Start</Arg>
+    <Arg>20101120</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>End</Arg>
+    <Arg>20101121</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>Location</Arg>
+    <Arg>USA</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>AllDay</Arg>
+    <Arg>1</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <!-- Delete a Sync50's event on device -->
+  <DeleteEvent><Arg>Sync50_02</Arg></DeleteEvent>
+  <!-- Force a slow sync -->
+  <ForceSlowSync><Arg>Calendar</Arg></ForceSlowSync>
+  <!-- Synchronize -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>0</Arg>
+    <Arg>3</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckEventsCount>
+    <Arg>4</Arg>
+  </CheckEventsCount>
+  <EndTest/>
+</Script>

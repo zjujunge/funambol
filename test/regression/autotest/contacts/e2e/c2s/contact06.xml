@@ -1,0 +1,50 @@
+<!--
+     SyncContacts06
+     On Device modify data from all fields, for a record in the Contacts section / Sync
+-->
+
+<Script>
+  <BeginTest>
+    <Arg>contact06</Arg>
+    <Arg>contact06</Arg>
+    <Arg>contact</Arg>
+    <Arg>c2s</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- This include create a new Contact (Luca Bianchi) and do a fast sync -->
+  <Include><Arg>addonerecord.xml</Arg></Include>
+
+  <!-- Load a Contact on Device side and modify all fields of this -->
+  <LoadContact>
+    <Arg>Luca</Arg>
+    <Arg>Bianchi</Arg>
+  </LoadContact>
+
+  <SetContactField>
+    <Arg>Website</Arg>
+    <Arg>www.lucabianchi.it</Arg>
+  </SetContactField>
+
+  <SaveContact/>
+
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server) -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+
+  <EndTest/>
+</Script>

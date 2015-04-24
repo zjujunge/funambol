@@ -1,0 +1,67 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia400</Arg>
+    <Arg>syncmedia400</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Create oversized file on client -->
+  <CreateFile>
+    <Arg>toobig.pdf</Arg>
+    <Arg>27000000</Arg>
+  </CreateFile>
+  
+  <!-- Perform the sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete> 
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+
+    <!-- Create good-size file on client -->
+  <CreateFile>
+    <Arg>notsobig.pdf</Arg>
+    <Arg>1024</Arg>
+  </CreateFile>
+  
+  <!-- Perform the sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete> 
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  
+</Script>

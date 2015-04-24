@@ -1,0 +1,91 @@
+<Script>
+  <BeginTest>
+    <Arg>syncfiles107</Arg>
+    <Arg>syncfiles107</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- 
+  
+    Scenario:
+      Add a txt file to the portal (e.g. using Windows Sync Client). Sync.
+      Rename the file on the portal. Sync.
+
+    Expected:
+      The file has been correctly renamed in the MediaHub folder.
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <AddMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>../data/rename01.txt</Arg>
+  </AddMediaOnServer>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- rename the file on server -->
+  <RenameMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>rename01.txt</Arg>
+    <Arg>renamed.txt</Arg>
+  </RenameMediaOnServer>
+  <OverrideMediaContentOnServer>
+    <Arg>Files</Arg>
+    <Arg>renamed.txt</Arg>
+    <Arg>../data/file02</Arg>
+  </OverrideMediaContentOnServer>
+  
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+  
+  <!-- Check file integrity -->
+  <CheckMediaContentIntegrity>
+    <Arg>Files</Arg>
+    <Arg>renamed.txt</Arg>
+  </CheckMediaContentIntegrity>
+
+  <EndTest/>
+</Script>

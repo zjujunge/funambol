@@ -1,0 +1,18 @@
+<Script>
+  
+  <DeleteAllMedia>
+    <Arg>${sourcename}</Arg>
+  </DeleteAllMedia>
+  <DeleteAllMediaOnServer>
+    <Arg>${sourcename}</Arg>
+  </DeleteAllMediaOnServer>
+  
+  <ForceSlowSync><Arg>${sourcename}</Arg></ForceSlowSync>
+  
+  <Include><Arg>firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>10</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  
+</Script>

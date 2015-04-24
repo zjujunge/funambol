@@ -1,0 +1,7 @@
+<Script>
+  <!-- Force First Sync -->
+  <ForceSlowSync><Arg>${sourcename}</Arg></ForceSlowSync>
+  <ResetFirstRunTimestamp/>
+  <CloseMainApp/>
+  <StartMainApp/>
+</Script>

@@ -1,0 +1,9 @@
+<Script>
+  <!-- Synchronization -->
+  <!-- TODO this must depend on the number of available sources -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>2</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+</Script>

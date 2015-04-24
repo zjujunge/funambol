@@ -1,0 +1,95 @@
+<Script>
+  <BeginTest>
+    <Arg>Videos end to end</Arg>
+    <Arg>*</Arg>
+    <Arg>video</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+    <!-- First syncs section -->
+  <Include><Arg>../../media/e2e/syncmedia200.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia201.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia203.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia205.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia207.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia210.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia211.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia212.xml</Arg></Include>
+
+  <!-- Incremental syncs section -->
+  <Include><Arg>../../media/e2e/syncmedia003.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia004.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia005.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia006.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia012.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia013.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia014.xml</Arg></Include> 
+
+  <Include><Arg>../../media/e2e/syncmedia400.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia401.xml</Arg></Include>
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicetype}</Arg>
+        <Arg>phone</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <!-- Phone-only related tests -->
+      <Include><Arg>../../media/e2e/syncmedia402.xml</Arg></Include>
+      <Include><Arg>../../media/e2e/syncmedia403.xml</Arg></Include>
+    </Then>
+    <Else>
+      <!-- Tablet-only related tests -->
+    </Else>
+  </Condition>  
+  
+  <Include><Arg>../../media/e2e/syncmedia506.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia507.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia508.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia509.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia512.xml</Arg></Include>
+
+  <!-- Picture renames -->
+  <Include><Arg>../../media/e2e/syncmedia007.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia008.xml</Arg></Include>
+
+  <!-- First followed by incremental -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicetype}</Arg>
+        <Arg>phone</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <!-- Phone-only related tests -->
+    </Then>
+    <Else>  
+      <!-- Tablet-only related tests -->
+      <Include><Arg>../../media/e2e/syncmedia600.xml</Arg></Include>
+    </Else>
+  </Condition>
+  <Include><Arg>../../media/e2e/syncmedia601.xml</Arg></Include>
+
+  <!-- Client full quota section -->
+  <Include><Arg>../../media/e2e/syncmedia103.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia104.xml</Arg></Include>
+  <Include><Arg>../../media/e2e/syncmedia105.xml</Arg></Include>
+
+  <!-- Server full quota section -->
+  <!-- Temporary disabled because filling the server takes too long -->
+  <!--
+  <Include><Arg>syncmedia100.xml</Arg></Include>
+  -->
+
+  <!-- Misc section -->
+  <!-- No need to run test media 700 for videos because the server does not
+       reject invalid videos
+  -->
+  <!-- <Include><Arg>../../media/e2e/syncmedia700.xml</Arg></Include>  -->
+  <Include><Arg>../../media/e2e/syncmedia701.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

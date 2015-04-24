@@ -1,0 +1,35 @@
+<Script>
+  <!-- SyncContacts07 -->
+  <!-- On the Server delete data from a field for a record in the Contacts section / Sync -->
+  <BeginTest>
+    <Arg>contact07</Arg>
+    <Arg>contact07</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- This include create a new Contact (Mario Rossi) and do a fast sync -->
+  <Include><Arg>addonerecord.xml</Arg></Include>
+  <!-- Load a Contact on Server side and delete data from a field of this -->
+  <SaveContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

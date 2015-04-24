@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.ant.freeform</type>
+    <configuration>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
+            <name>@@PROJECT-NAME@@</name>
+        </general-data>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/2">
+            <!-- Do not use Project Properties customizer when editing this file manually. -->
+            <name>@@PROJECT-NAME@@</name>
+            <properties/>
+            <folders>
+                <source-folder>
+                    <label>src</label>
+                    <type>java</type>
+                    <location>src</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>gen</label>
+                    <type>java</type>
+                    <location>gen</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>test/src</label>
+                    <type>java</type>
+                    <location>test/src</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/common/src/main/java</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/common/src/main/java</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/common/src/main/java-se</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/common/src/main/java-se</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/common/src/main/java-se-android</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/common/src/main/java-se-android</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/pim/src/main/java</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/pim/src/main/java</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/pim/src/main/java-se</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/pim/src/main/java-se</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/sync/src/main/java</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/sync/src/main/java</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/syncml/src/main/java</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/syncml/src/main/java</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/sapisync/src/main/java</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/sapisync/src/main/java</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>externals/java-sdk/client/src/main/java</label>
+                    <type>java</type>
+                    <location>externals/java-sdk/client/src/main/java</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+            </folders>
+            <ide-actions>
+                <action name="build">
+                    <target>snapshot</target>
+                </action>
+                <action name="clean">
+                    <target>clean</target>
+                </action>
+                <action name="run">
+                    <target>reinstall</target>
+                </action>
+                <action name="test">
+                    <target>run-unit-test</target>
+                </action>
+                <action name="rebuild">
+                    <target>clean</target>
+                    <target>snapshot</target>
+                </action>
+                <action name="debug">
+                    <target>debug</target>
+                </action>
+                <action name="release">
+                    <target>release</target>
+                </action>
+                <action name="reinstall">
+                    <target>reinstall</target>
+                </action>
+            </ide-actions>
+            <export>
+                <type>folder</type>
+                <location>bin/classes</location>
+                <build-target>snapshot</build-target>
+            </export>
+            <view>
+                <items>
+                    <source-folder style="packages">
+                        <label>src</label>
+                        <location>src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>gen</label>
+                        <location>gen</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>test/src</label>
+                        <location>test/src</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/common/src/main/java</label>
+                        <location>externals/java-sdk/common/src/main/java</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/common/src/main/java-se</label>
+                        <location>externals/java-sdk/common/src/main/java-se</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/common/src/main/java-se-android</label>
+                        <location>externals/java-sdk/common/src/main/java-se-android</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/pim/src/main/java</label>
+                        <location>externals/java-sdk/pim/src/main/java</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/pim/src/main/java-se</label>
+                        <location>externals/java-sdk/pim/src/main/java-se</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/sync/src/main/java</label>
+                        <location>externals/java-sdk/sync/src/main/java</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/syncml/src/main/java</label>
+                        <location>externals/java-sdk/syncml/src/main/java</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/sapisync/src/main/java</label>
+                        <location>externals/java-sdk/sapisync/src/main/java</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>externals/java-sdk/client/src/main/java</label>
+                        <location>externals/java-sdk/client/src/main/java</location>
+                    </source-folder>
+                    <source-file>
+                        <location>build.xml</location>
+                    </source-file>
+                </items>
+                <context-menu>
+                    <ide-action name="build"/>
+                    <ide-action name="rebuild"/>
+                    <ide-action name="clean"/>
+                    <ide-action name="run"/>
+                    <ide-action name="test"/>
+                    <ide-action name="release"/>
+                    <ide-action name="debug"/>
+                    <ide-action name="reinstall"/>
+                </context-menu>
+            </view>
+            <subprojects/>
+        </general-data>
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/2">
+            <compilation-unit>
+                <package-root>src</package-root>
+                <package-root>gen</package-root>
+                <package-root>externals/java-sdk/common/src/main/java</package-root>
+                <package-root>externals/java-sdk/common/src/main/java-se</package-root>
+                <package-root>externals/java-sdk/common/src/main/java-se-android</package-root>
+                <package-root>externals/java-sdk/pim/src/main/java</package-root>
+                <package-root>externals/java-sdk/pim/src/main/java-se</package-root>
+                <package-root>externals/java-sdk/sync/src/main/java</package-root>
+                <package-root>externals/java-sdk/syncml/src/main/java</package-root>
+                <package-root>externals/java-sdk/sapisync/src/main/java</package-root>
+                <package-root>externals/java-sdk/client/src/main/java</package-root>
+                <package-root>test/src</package-root>
+                <classpath mode="compile">@@ANDROID-JAR@@:externals/java-sdk/syncml/lib/kxml2-2.3.0.jar</classpath>
+                <built-to>bin/classes</built-to>
+                <source-level>1.5</source-level>
+            </compilation-unit>
+        </java-data>
+    </configuration>
+</project>

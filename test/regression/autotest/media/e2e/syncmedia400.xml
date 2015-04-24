@@ -1,0 +1,93 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia400</Arg>
+    <Arg>syncmedia400</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Set the sync to two ways -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add pictures on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  
+  <!-- Force First Sync -->
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+
+  <!-- Prepare the sync to be interrupted while uploading -->  
+  <!-- Under 2048 bytes the resume isn't correctly handled,
+       because of Android's http Apache library implementation -->
+  <InterruptItemUpload>
+    <Arg></Arg>
+    <Arg>2050</Arg>
+    <Arg>1</Arg>
+  </InterruptItemUpload>
+  
+  <!-- Perform the sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete> 
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- sync again and check that an item was properly resumed -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckResumedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckResumedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCountOnServer>
+  
+</Script>

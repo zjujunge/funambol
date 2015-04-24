@@ -1,0 +1,52 @@
+<Script>
+  <BeginTest>
+    <Arg>Add four records on device and sync</Arg>
+    <Arg>*</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>deleteall.xml</Arg></Include>
+
+  <!-- Add new pictures -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMedia>
+
+  <!-- Synchronization -->
+  <Include><Arg>firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

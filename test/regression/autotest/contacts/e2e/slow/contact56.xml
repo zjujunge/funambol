@@ -1,0 +1,50 @@
+<Script>
+  <!-- SyncContacts56 -->
+  <!-- On server side modify one record and delete one record in the Contacts section / Slow Sync -->
+  <BeginTest>
+    <Arg>contact56</Arg>
+    <Arg>contact56</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- This include create new multiple records of Contacts (Giuseppe Rossi, Mario Bianchi, Carlo Arancio, Pallino Pinko) and do a fast sync -->
+  <Include><Arg>../s2c/addfourrecords.xml</Arg></Include>
+  <!-- Load a Contact on Server side and modify some fields of this -->
+  <SaveContactOnServer><Arg>{&quot;firstname&quot;=&quot;Giuseppe&quot;,
+                             &quot;lastname&quot;=&quot;Rossi&quot;,
+                             &quot;displayname&quot;=&quot;Zio Giuseppe&quot;}</Arg>
+  </SaveContactOnServer>
+  <SaveContactOnServer><Arg>{&quot;firstname&quot;=&quot;Carlo&quot;,
+                             &quot;lastname&quot;=&quot;Arancio&quot;,
+                             &quot;displayname&quot;=&quot;Zio Carlo&quot;}</Arg>
+  </SaveContactOnServer>
+  <SaveContactOnServer><Arg>{&quot;firstname&quot;=&quot;Pallino&quot;,
+                             &quot;lastname&quot;=&quot;Pinko&quot;,
+                             &quot;displayname&quot;=&quot;Zio Pallino&quot;}</Arg>
+  </SaveContactOnServer>
+  <!-- Delete a Contact on Device side -->
+  <DeleteContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Bianchi</Arg>
+  </DeleteContactOnServer>
+  <!-- Force a Slow Sync -->
+  <ForceSlowSync><Arg>Contacts</Arg></ForceSlowSync>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>3</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

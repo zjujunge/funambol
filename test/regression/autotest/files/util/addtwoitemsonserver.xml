@@ -1,0 +1,50 @@
+<Script>
+  <BeginTest>
+    <Arg>Add two items on server</Arg>
+    <Arg>*</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <!-- Add files on server and download on device -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add new files on portal -->
+  <AddMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>../data/file01</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>../data/file02</Arg>
+  </AddMediaOnServer>
+
+  <!-- Synchronization -->
+  <Include><Arg>firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCount>
+  <!-- check files also on server -->
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCountOnServer>
+
+  <EndTest/>
+</Script>

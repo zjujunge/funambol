@@ -1,0 +1,159 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia601</Arg>
+    <Arg>syncmedia601</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>c2s</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- Set the sync to two ways for pics -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <!-- Force First Sync -->
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+
+  <!-- Add 7 items on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item4}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item5}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item6}</Arg>
+  </AddMedia>
+
+  <ResetFirstRunTimestamp></ResetFirstRunTimestamp>
+  
+  <!-- Perform the Picture sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>${firstsyncuploadlimit}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${firstsyncuploadlimit}</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- Now set upload older picture -->
+  <Include><Arg>../util/toggleuploadolder.xml</Arg></Include>
+
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${sourcename}</Arg>
+        <Arg>Pictures</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <SetVariable>
+        <Arg>second_sync_sent_items_601</Arg>
+        <Arg>2</Arg>
+      </SetVariable>
+    </Then>
+    <Else>
+      <SetVariable>
+        <Arg>second_sync_sent_items_601</Arg>
+        <Arg>5</Arg>
+      </SetVariable>
+    </Else>
+  </Condition>
+
+  <!-- And re-executes the sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>${second_sync_sent_items_601}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>7</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- Add a picture on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item7}</Arg>
+  </AddMedia>
+  <!-- And re-executes the sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>8</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- Reset upload older picture to no -->
+  <EndTest>
+    <Arg>../util/toggleuploadolder.xml</Arg>
+  </EndTest>
+
+</Script>

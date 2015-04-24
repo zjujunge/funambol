@@ -1,0 +1,88 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia701</Arg>
+    <Arg>syncmedia701</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!--
+       1) Install the client and login
+       2) Perform an initial empty sync
+       3) Set two ways sync for the media source
+       4) Creates an item on server that the client does not support in upload
+          (e.g. an avi video or a tiff picture)
+       5) Sync to client
+       6) Check that the item is received on client
+       7) Delete item on server
+       8) Sync to client
+       9) Check that the item has been deleted on client
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Add new items -->
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item_not_supported_in_upload}</Arg>
+  </AddMediaOnServer>
+
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+ <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+
+  <DeleteMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item_not_supported_in_upload}</Arg>
+  </DeleteMediaOnServer>
+
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+  </CheckExchangedData>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCountOnServer>
+ <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCount>
+  
+  <EndTest/>
+</Script>

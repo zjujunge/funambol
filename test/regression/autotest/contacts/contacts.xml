@@ -1,0 +1,19 @@
+<Script>
+  <BeginTest>
+    <Arg>Contacts regression</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <Include><Arg>e2e/e2e.xml</Arg></Include>
+  <Include><Arg>locals/locals.xml</Arg></Include>
+
+  <!-- Include all the bug tests -->
+  <!--
+  <Include><Arg>bugs/bug9591.xml</Arg></Include>
+  -->
+
+  <EndTest/>
+</Script>

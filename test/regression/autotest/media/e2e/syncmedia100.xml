@@ -1,0 +1,138 @@
+<Script>
+  <BeginTest>
+    <Arg>Server quota and error messages for pictures excedded, with manual sync</Arg>
+    <Arg>syncmedia100</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+
+<!-- 
+  
+  Scenario:
+    Manually start a Media file Sync and reach the maximum quota per user set on server.
+    Remove some media files on server to free enough space or raise the quota on server.
+    Manually sync again.
+
+  Expected:
+    Once the quota is reached, the user is warned about this with a message and the sync fails.
+    Only media files still not sent are sent to the server.
+    Sync successfully completes.
+    
+  Repeat the same scenario with scheduled sync and c2s push
+  
+-->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+  <Include><Arg>../util/setupload.xml</Arg></Include>
+  
+  <!-- Fill quota on server, so the media cannot be upload -->
+  <LeaveNoFreeServerQuotaForMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${itembig0}</Arg>
+  </LeaveNoFreeServerQuotaForMedia>
+
+  <!-- Add new mdia on client, bigger than the available quota -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${itembig1}</Arg>
+  </AddMedia>
+
+  <!-- Starts a media sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <Wait><Arg>20</Arg></Wait>
+  
+  <!-- Dismiss alert dialog -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncStatusCode>
+    <Arg>${sourcename}</Arg>
+    <Arg>153</Arg> <!-- 153: Server quota overflow -->
+  </CheckSyncStatusCode>
+
+  <!-- 
+    Test notification with scheduled sync
+  -->
+  <Include><Arg>../../util/setscheduled.xml</Arg></Include>
+  <CloseMainApp/>
+  <Wait><Arg>360</Arg></Wait>
+  <CheckLastNotification>
+    <Arg>10</Arg>
+    <Arg>1</Arg>
+    <Arg>Sync error</Arg>
+    <Arg>Server quota exceeded</Arg>
+    <Arg>Not enough space available in your online account</Arg>
+  </CheckLastNotification>
+  <StartMainApp/>
+  <WaitForActivity>
+    <Arg>AndroidHomeScreen</Arg>
+    <Arg>150</Arg>
+  </WaitForActivity>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncStatusCode>
+    <Arg>${sourcename}</Arg>
+    <Arg>153</Arg> <!-- 153: Server quota overflow -->
+  </CheckSyncStatusCode>
+  
+  <!-- 
+    Test notification with c2s push
+  -->
+  <Include><Arg>../../util/setmanual.xml</Arg></Include>
+  <Include><Arg>../../util/setc2spush.xml</Arg></Include>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <CloseMainApp/>
+  <Wait><Arg>90</Arg></Wait>
+  <CheckLastNotification>
+    <Arg>10</Arg>
+    <Arg>1</Arg>
+    <Arg>Sync error</Arg>
+    <Arg>Server quota exceeded</Arg>
+    <Arg>Not enough space available in your online account</Arg>
+  </CheckLastNotification>
+  <StartMainApp/>
+  <WaitForActivity>
+    <Arg>AndroidHomeScreen</Arg>
+    <Arg>150</Arg>
+  </WaitForActivity>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncStatusCode>
+    <Arg>${sourcename}</Arg>
+    <Arg>153</Arg> <!-- 153: Server quota overflow -->
+  </CheckSyncStatusCode>
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  
+  <!-- Restore original state -->
+  <EndTest>
+    <Arg>../../util/setc2spush.xml</Arg>
+  </EndTest>
+</Script>

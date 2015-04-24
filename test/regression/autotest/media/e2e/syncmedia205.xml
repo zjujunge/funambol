@@ -1,0 +1,209 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia205</Arg>
+    <Arg>syncmedia205</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- 
+       Load enough media on device, one item on sever and start a Sync. Only
+       5 pictures are sent to the server.
+       On Tablet also the picture is received from server.        
+  -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- 
+       The FS has 1 second for the last modified value granularity so we need 
+       to wait one second between every add 
+  -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <Wait><Arg>1</Arg></Wait>
+
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <Wait><Arg>1</Arg></Wait>
+
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMedia>
+  <Wait><Arg>1</Arg></Wait>
+
+  <!-- The number of items to be uploaded is different depending on the source -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${sourcename}</Arg>
+        <Arg>Pictures</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <AddMedia>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item3}</Arg>
+      </AddMedia>
+      <Wait><Arg>1</Arg></Wait>
+
+      <AddMedia>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item4}</Arg>
+      </AddMedia>
+      <Wait><Arg>1</Arg></Wait>
+
+      <AddMedia>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item5}</Arg>
+      </AddMedia>
+      <Wait><Arg>1</Arg></Wait>
+
+      <AddMediaOnServer>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item6}</Arg>
+      </AddMediaOnServer>
+
+      <SetVariable>
+        <Arg>itemscount205</Arg>
+        <Arg>6</Arg>
+      </SetVariable>
+
+      <SetVariable>
+        <Arg>itemscountaftersyncphone205</Arg>
+        <Arg>6</Arg>
+      </SetVariable>
+
+      <SetVariable>
+        <Arg>itemscountaftersynctablet205</Arg>
+        <Arg>7</Arg>
+      </SetVariable>
+    </Then>
+    <Else>
+      <AddMediaOnServer>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item3}</Arg>
+      </AddMediaOnServer>
+
+      <SetVariable>
+        <Arg>itemscount205</Arg>
+        <Arg>3</Arg>
+      </SetVariable>
+
+      <SetVariable>
+        <Arg>itemscountaftersyncphone205</Arg>
+        <Arg>3</Arg>
+      </SetVariable>
+
+      <SetVariable>
+        <Arg>itemscountaftersynctablet205</Arg>
+        <Arg>4</Arg>
+      </SetVariable>
+    </Else>
+  </Condition>
+
+  
+  <!-- Force First Sync -->
+  <ForceSlowSync><Arg>${sourcename}</Arg></ForceSlowSync>
+  <ResetFirstRunTimestamp/>
+  <CloseMainApp/>
+  <StartMainApp/>
+
+ 
+  <!-- Synchronize -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  
+  <Wait>
+    <Arg>2</Arg>
+  </Wait> 
+
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicetype}</Arg>
+        <Arg>phone</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <CheckExchangedData>
+        <Arg>${sourcename}</Arg>
+        <Arg>${firstsyncuploadlimit}</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+      </CheckExchangedData>
+      <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>${itemscountaftersyncphone205}</Arg>
+      </CheckMediaCount>
+    </Then>
+    <Else>
+      <CheckExchangedData>
+        <Arg>${sourcename}</Arg>
+        <Arg>${firstsyncuploadlimit}</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>1</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+      </CheckExchangedData>
+      <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>${itemscountaftersynctablet205}</Arg>
+      </CheckMediaCount>
+    </Else>
+  </Condition>
+
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${itemscount205}</Arg>
+  </CheckMediaCountOnServer>
+
+
+  <!-- Verify that only the most recent items were sent -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${sourcename}</Arg>
+        <Arg>Pictures</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <CheckMediaContentIntegrity>
+        <Arg>${sourcename}</Arg>
+        <Arg>${item5}</Arg>
+      </CheckMediaContentIntegrity>
+      <CheckMediaContentIntegrity>
+        <Arg>${sourcename}</Arg>
+        <Arg>${item4}</Arg>
+      </CheckMediaContentIntegrity>
+      <CheckMediaContentIntegrity>
+      <Arg>${sourcename}</Arg>
+      <Arg>${item3}</Arg>
+      </CheckMediaContentIntegrity>
+    </Then>
+  </Condition>
+
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item2}</Arg>
+  </CheckMediaContentIntegrity>
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item1}</Arg>
+  </CheckMediaContentIntegrity>
+
+  <EndTest/>
+</Script>

@@ -1,0 +1,30 @@
+<Script>
+  <BeginTest>
+    <Arg>Push</Arg>
+    <Arg>*</Arg>
+    <Arg>push</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <Include><Arg>push11.txt</Arg></Include>
+  <Include><Arg>push12.txt</Arg></Include>
+  <Include><Arg>push13.txt</Arg></Include>
+  <Include><Arg>push14.txt</Arg></Include>
+  <Include><Arg>push15.txt</Arg></Include>
+  <Include><Arg>push21.txt</Arg></Include>
+  <Include><Arg>push22.txt</Arg></Include>
+  <Include><Arg>push23.txt</Arg></Include>
+  <Include><Arg>push24.txt</Arg></Include>
+  <Include><Arg>push25.txt</Arg></Include>
+  <Include><Arg>push26.txt</Arg></Include>
+
+  <!--
+    Fails (See bug #9463 - C2S push, when change account C2S setting is loss);
+  -->
+  <!--
+    Include(push31.txt);
+  -->
+
+  <EndTest/>
+</Script>

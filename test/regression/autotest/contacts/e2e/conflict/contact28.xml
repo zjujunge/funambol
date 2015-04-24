@@ -1,0 +1,55 @@
+<!--
+  SyncContacts28
+  For a contact, modify data from the same field, both on Device and on the Server / Sync
+-->
+
+<Script>
+  <BeginTest>
+    <Arg>contact28</Arg>
+    <Arg>contact28</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- This include create a new Contact (Luca Bianchi) and do a fast sync -->
+  <Include><Arg>../c2s/addonerecord.xml</Arg></Include>
+
+  <!-- Load a Contact on Device side and modify some fields of this -->
+  <LoadContact>
+    <Arg>Luca</Arg>
+    <Arg>Bianchi</Arg>
+  </LoadContact>
+  <SetContactField>
+    <Arg>Website</Arg>
+    <Arg>www.newsite.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <!-- Update the contat on the server, changing its categories -->
+  <SaveContactOnServer>
+    <Arg>{&quot;firstname&quot;:&quot;Luca&quot;,
+          &quot;lastname&quot;:&quot;Bianchi&quot;,
+          &quot;categories&quot;:&quot;Friends&quot;}</Arg>
+  </SaveContactOnServer>
+
+  <!-- #Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+
+  <EndTest/>
+</Script>

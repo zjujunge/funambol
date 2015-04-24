@@ -1,0 +1,185 @@
+<Script>
+  <!--
+     test list 4882_21
+  -->
+  <BeginTest ><Arg>"push31 - After change account the c2s push settings must be preserved"</Arg></BeginTest >
+
+  <!--
+     Enable c2s push setting
+  -->
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+     Change Account settings
+  -->
+  <!--
+     Enter settings screen
+  -->
+  <KeyPress><Arg>KeyMenu</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+
+  <!--
+     Goto Account tab
+  -->
+  <KeyPress><Arg>KeyRight</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+
+  <!--
+     Fill username
+  -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress>
+    <Arg>KeyDelete</Arg>
+    <Arg> 20</Arg>
+  </KeyPress>
+  <WriteString><Arg>"fedeqa2"</Arg></WriteString>
+
+  <!--
+     Fill password
+  -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress>
+    <Arg>KeyDelete</Arg>
+    <Arg> 20</Arg>
+  </KeyPress>
+  <WriteString><Arg>"test"</Arg></WriteString>
+
+  <!--
+     Save settings
+  -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+
+  <!--
+     Say ok to the dialog
+  -->
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <!--
+     Wait authentication process
+  -->
+  <WaitForAuthToComplete>
+    <Arg>5</Arg>
+    <Arg> 60</Arg>
+  </WaitForAuthToComplete>
+  <Wait><Arg>2</Arg></Wait>
+
+  <DeleteAllContacts/>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 5</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+
+  <!--
+     Verify that the c2s push is still enabled
+  -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0123456789</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Contacts</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 30</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <!--
+     Restore c2s push setting
+  -->
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <!--
+     Restore account setting
+  -->
+  <!--
+     Enter settings screen
+  -->
+  <KeyPress><Arg>KeyMenu</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+
+  <!--
+     Goto Account tab
+  -->
+  <KeyPress><Arg>KeyRight</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+
+  <!--
+     Fill username
+  -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress>
+    <Arg>KeyDelete</Arg>
+    <Arg> 20</Arg>
+  </KeyPress>
+  <WriteString><Arg>"fedeqa"</Arg></WriteString>
+
+  <!--
+     Fill password
+  -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress>
+    <Arg>KeyDelete</Arg>
+    <Arg> 20</Arg>
+  </KeyPress>
+  <WriteString><Arg>"test"</Arg></WriteString>
+
+  <!--
+     Save settings
+  -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+
+  <!--
+     Say ok to the dialog
+  -->
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <!--
+     Wait authentication process
+  -->
+  <WaitForAuthToComplete>
+    <Arg>5</Arg>
+    <Arg> 60</Arg>
+  </WaitForAuthToComplete>
+  <Wait><Arg>2</Arg></Wait>
+
+  <EndTest/>
+</Script>

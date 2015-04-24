@@ -1,0 +1,119 @@
+<Script>
+  <BeginTest>
+    <Arg>syncfiles111</Arg>
+    <Arg>syncfiles111</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- 
+  
+    Scenario:
+      Add a txt file to the MediaHub folder. Sync.
+      Rename and update the file. Sync.
+      Interrupt sync during item upload. Sync.
+
+    Expected:
+      The file has been correctly renamed on the portal, 
+      and the file content has been updated too.
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <AddMedia>
+    <Arg>Files</Arg>
+    <Arg>../data/rename01.txt</Arg>
+  </AddMedia>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- rename the file -->
+  <RenameMedia>
+    <Arg>Files</Arg>
+    <Arg>rename01.txt</Arg>
+    <Arg>renamed.txt</Arg>
+  </RenameMedia>
+  <OverrideMediaContent>
+    <Arg>Files</Arg>
+    <Arg>renamed.txt</Arg>
+    <Arg>../data/file01</Arg>
+  </OverrideMediaContent>
+  
+  <!-- Prepare the sync to be interrupted while uploading -->  
+  <InterruptItemUpload>
+    <Arg>renamed.txt</Arg>
+    <Arg>1023</Arg>
+  </InterruptItemUpload>
+  
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg> 
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckResumedData>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckResumedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCountOnServer>
+  
+  <!-- Check file integrity -->
+  <CheckMediaContentIntegrity>
+    <Arg>Files</Arg>
+    <Arg>renamed.txt</Arg>
+  </CheckMediaContentIntegrity>
+
+  <EndTest/>
+</Script>

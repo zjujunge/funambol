@@ -1,0 +1,64 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia006</Arg>
+    <Arg>syncmedia006</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!--
+     Add pictures on server, delete them and sync with device
+  -->
+  
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+  <Include><Arg>../util/addfourrecords.xml</Arg></Include>
+
+  <!--
+     Delete all pictures
+  -->
+  <DeleteMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item0}</Arg>
+  </DeleteMediaOnServer>
+
+  <DeleteMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item1}</Arg>
+  </DeleteMediaOnServer>
+
+  <DeleteMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item2}</Arg>
+  </DeleteMediaOnServer>
+
+  <DeleteMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item3}</Arg>
+  </DeleteMediaOnServer>
+
+  <!--
+     Synchronize
+  -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>4</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

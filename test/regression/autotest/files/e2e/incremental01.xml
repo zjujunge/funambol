@@ -1,0 +1,15 @@
+<Script>
+  <BeginTest>
+    <Arg>File 01</Arg>
+    <Arg>incremental01</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- Add new files on client and sync them to server -->
+
+  <Include><Arg>../util/addtwoitems.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

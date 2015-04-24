@@ -1,0 +1,147 @@
+<Script>
+  <!--
+    test list 4882_23
+  -->
+  <BeginTest ><Arg>"push26 - verified contacts syncs from push in following order"</Arg></BeginTest >
+
+  <!--
+    Add contacts
+  -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test1</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact1</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765971</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test2</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact2</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765972</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test3</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact3</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765973</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test4</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact5</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765974</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test5</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact5</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765975</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <!--
+    Enable c2s settings
+  -->
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+     Attempting to start contacts sync manually
+  -->
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test6</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact6</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765976</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 10</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 5</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 10</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <EndTest />
+</Script>

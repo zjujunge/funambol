@@ -1,0 +1,166 @@
+<Script>
+  <!--
+    test list 4882_17
+  -->
+  <BeginTest ><Arg>"push23 - verified when c2s settings is disabled no push sync started"</Arg></BeginTest >
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <!--
+    Add a contact
+  -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765979</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Contacts</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 30</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+    Load a Contact on Device side and modify one field of this
+  -->
+  <LoadContact>
+    <Arg>Test</Arg>
+    <Arg>Contact</Arg>
+  </LoadContact>
+  <SetContactField>
+    <Arg>EmailHome</Arg>
+    <Arg>test.contact@universitàdipavia.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Contacts</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 30</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 0</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+    Delete a contact
+  -->
+  <DeleteContact>
+    <Arg>Test</Arg>
+    <Arg> Contact</Arg>
+  </DeleteContact>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending><Arg>Contacts</Arg></CheckSyncPending>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 30</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <!--
+    Add a contact
+  -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765979</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending>
+    <Arg>Contacts</Arg>
+    <Arg> false</Arg>
+  </CheckSyncPending>
+
+  <!--
+    Load a Contact on Device side and modify one field of this
+  -->
+  <LoadContact>
+    <Arg>Test</Arg>
+    <Arg>Contact</Arg>
+  </LoadContact>
+  <SetContactField>
+    <Arg>EmailHome</Arg>
+    <Arg>test.contact@universitàdipavia.it</Arg>
+  </SetContactField>
+  <SaveContact/>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending>
+    <Arg>Contacts</Arg>
+    <Arg> false</Arg>
+  </CheckSyncPending>
+
+  <!--
+    Delete a contact
+  -->
+  <DeleteContact>
+    <Arg>Test</Arg>
+    <Arg> Contact</Arg>
+  </DeleteContact>
+  <Wait><Arg>2</Arg></Wait>
+  <CheckSyncPending>
+    <Arg>Contacts</Arg>
+    <Arg> false</Arg>
+  </CheckSyncPending>
+
+  <DeleteAllContacts/>
+  <KeyPress><Arg>"KeyFire"</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 5</Arg>
+    <Arg> 60</Arg>
+  </WaitForSyncToComplete>
+
+  <EndTest />
+</Script>

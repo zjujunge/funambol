@@ -1,0 +1,18 @@
+<!--
+  SyncContacts16
+  Add multiple records on Device in the Contacts section / Sync
+-->
+
+<Script>
+  <BeginTest>
+    <Arg>contact16</Arg>
+    <Arg>contact16</Arg>
+    <Arg>contact</Arg>
+    <Arg>c2s</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>addfourrecords.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

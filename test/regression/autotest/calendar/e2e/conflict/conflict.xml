@@ -1,0 +1,6 @@
+<Script>
+  <BeginTest><Arg>Calendar End2End Conflicts</Arg></BeginTest>
+  <Include><Arg>sync28.xml</Arg></Include>
+  <Include><Arg>sync29.xml</Arg></Include>
+  <EndTest/>
+</Script>

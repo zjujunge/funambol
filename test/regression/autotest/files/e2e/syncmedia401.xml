@@ -1,0 +1,98 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia401</Arg>
+    <Arg>syncmedia401</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add files on server -->
+  <AddMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>../data/file01</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>../data/file02</Arg>
+  </AddMediaOnServer>
+  
+  <!-- Force First Sync -->
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+
+  <!-- Prepare the sync to be interrupted while downloading -->
+  <InterruptItemDownload>
+    <Arg>file02</Arg>
+    <Arg>1023</Arg>
+  </InterruptItemDownload>
+  
+  <!-- Perform the sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete> 
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCount>
+
+  <!-- sync again and check that an item was properly resumed -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicetype}</Arg>
+        <Arg>phone</Arg>
+      </Equals>
+    </If>
+    <Then></Then>
+    <Else>  
+      <CheckExchangedData>
+        <Arg>Files</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>2</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+      </CheckExchangedData>
+      <CheckResumedData>
+        <Arg>Files</Arg>
+        <Arg>0</Arg>
+        <Arg>2</Arg>
+      </CheckResumedData>
+      <CheckSyncErrors>
+        <Arg>Files</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+      </CheckSyncErrors>
+      <CheckMediaCount>
+        <Arg>Files</Arg>
+        <Arg>2</Arg>
+      </CheckMediaCount>
+    </Else>
+    </Condition>
+
+</Script>

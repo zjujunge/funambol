@@ -1,0 +1,45 @@
+<Script>
+<!-- setscheduled.xml >
+  
+  <!-- Change settings to Scheduled - 5 minutes -->
+  <!-- Enter settings screen -->
+  <KeyPress><Arg>KeyMenu</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+  <!-- Find setting for Sync with server -->
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <!-- Change setting to Scheduled -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <!-- Find setting for Interval -->
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <!-- Change setting to minimum (5 minutes) -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <Wait><Arg>1</Arg></Wait>
+  <KeyPress>
+    <Arg>KeyUp</Arg>
+    <Arg>4</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <!-- Save settings -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>15</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+</Script>

@@ -1,0 +1,60 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia201</Arg>
+    <Arg>syncmedia201</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Add media both sides, force a first sync.  -->
+  <!-- Sync mode set to 'Upload Only' -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <Include><Arg>../util/setupload.xml</Arg></Include>
+
+  <!-- Add new pictures -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMediaOnServer>
+
+  <!-- Force First Sync -->
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+
+  <!--
+     Forced First Sync with items present on client (no include old media check)
+  -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

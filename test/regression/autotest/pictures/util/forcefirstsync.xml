@@ -1,0 +1,7 @@
+<Script>
+  <!-- Force First Sync -->
+  <ForceSlowSync><Arg>Pictures</Arg></ForceSlowSync>
+  <ResetFirstRunTimestamp/>
+  <CloseMainApp/>
+  <StartMainApp/>
+</Script>

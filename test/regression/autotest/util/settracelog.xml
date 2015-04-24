@@ -1,0 +1,58 @@
+<Script>
+  <BeginTest>
+    <Arg>Log to trace</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <KeyPress><Arg>KeyMenu</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <Wait><Arg>1</Arg></Wait>
+
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyRight</Arg></KeyPress>
+  <KeyPress><Arg>KeyRight</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <!-- On motorola droid X we need one keydown less (no good reason for it) -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicemodel}</Arg>
+        <Arg>DROIDX</Arg>
+      </Equals>
+    </If>
+    <Then>
+    </Then>
+    <Else>
+      <KeyPress><Arg>KeyDown</Arg></KeyPress>
+    </Else>
+  </Condition>
+
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <EndTest/>
+</Script>

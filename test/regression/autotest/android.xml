@@ -1,0 +1,50 @@
+<!-- Start the Android Test Planning -->
+<Script>
+  <BeginTest>
+    <Arg>Android</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+  <!-- Initialize tests (login) -->
+  <Include><Arg>begintest.xml</Arg></Include>
+
+  <!-- Set log level to trace -->
+  <Include><Arg>util/settracelog.xml</Arg></Include>
+
+  <!-- Contacts sync regression -->
+  <Include><Arg>contacts/contacts.xml</Arg></Include>
+
+  <!-- 
+       Calendar sync regression (only available on OS 2.2 and beyond (code
+       version 8
+  -->
+  <Condition>
+    <If>
+      <CheckOS>
+        <Arg>8</Arg>
+        <Arg></Arg>
+      </CheckOS>
+    </If>
+    <Then>
+      <Include><Arg>calendar/calendar.xml</Arg></Include>
+    </Then>
+  </Condition>
+
+  <!-- Pictures sync regression -->
+  <Include><Arg>pictures/pictures.xml</Arg></Include>
+
+  <!-- Videos sync regression -->
+  <Include><Arg>videos/videos.xml</Arg></Include>
+
+  <!-- Files sync regression -->
+  <Include><Arg>files/files.xml</Arg></Include>
+  
+  <!-- C2S push regression 
+  <Include><Arg>push/push.txt</Arg></Include>
+  -->
+  
+  <EndTest/>
+</Script>

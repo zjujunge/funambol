@@ -1,0 +1,66 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia512</Arg>
+    <Arg>syncmedia512</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Test the sync of media items with extended chars in the filename -->
+
+  <!-- Set the sync to two ways for pics -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add one pic on the server -->
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMediaOnServer>
+
+  <RenameMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item0}</Arg>
+    <Arg>${item_strange_name}</Arg>
+  </RenameMediaOnServer>
+
+  <!-- Sync everything -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Check the status for the pics source -->
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item_strange_name}</Arg>
+  </CheckMediaContentIntegrity>
+
+</Script>

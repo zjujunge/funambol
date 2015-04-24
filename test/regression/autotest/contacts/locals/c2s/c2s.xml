@@ -1,0 +1,12 @@
+<Script>
+  <BeginTest>
+    <Arg>Contacts C2S</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>c2s</Arg>
+    <Arg>local</Arg>
+  </BeginTest>
+  <Include><Arg>all_fields_filled.xml</Arg></Include>
+  <Include><Arg>special_characters.xml</Arg></Include>
+  <EndTest/>
+</Script>

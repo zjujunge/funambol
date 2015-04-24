@@ -1,0 +1,61 @@
+<Script>
+  <BeginTest>
+    <Arg>Test for media sync when local storage is filled</Arg>
+    <Arg>syncmedia104</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Add a picture on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+
+  <FillLocalStorage/>
+  <!--  Local storage is now FULL -->
+
+  <!-- Add three records on server -->
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMediaOnServer>
+
+  <Include><Arg>../../util/setscheduled.xml</Arg></Include>
+  
+  <!-- Check notification when app is in background -->
+  <KeyPress>
+    <Arg>KeyBack</Arg>
+  </KeyPress>
+
+  <Wait><Arg>360</Arg></Wait>
+  <CheckLastNotification>
+    <Arg>11</Arg>
+    <Arg>1</Arg>
+    <Arg>Funambol Sync warning</Arg>
+    <Arg>Funambol Sync warning</Arg>
+    <Arg>Insufficient device storage</Arg>
+  </CheckLastNotification>
+  <StartMainApp/>
+  
+  <WaitForActivity>
+    <Arg>AndroidHomeScreen</Arg>
+    <Arg>120</Arg>
+  </WaitForActivity>
+  
+  <EndTest>
+    <Arg>../../util/setmanual.xml</Arg>
+  </EndTest>
+</Script>

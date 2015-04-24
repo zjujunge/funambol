@@ -1,0 +1,39 @@
+<Script>
+  <BeginTest>
+    <Arg>Add four records on device and sync</Arg>
+    <Arg>*</Arg>
+    <Arg>video</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>deleteall.xml</Arg></Include>
+
+  <!-- Add new videos -->
+  <AddVideo><Arg>../data/vid01.3gp</Arg></AddVideo>
+  <AddVideo><Arg>../data/vid02.3gp</Arg></AddVideo>
+  <AddVideo><Arg>../data/vid03.mp4</Arg></AddVideo>
+  <AddVideo><Arg>../data/vid04.mp4</Arg></AddVideo>
+
+  <!-- Synchronization -->
+  <Include><Arg>firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>Videos</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckVideosCount>
+    <Arg>4</Arg>
+  </CheckVideosCount>
+
+  <EndTest/>
+</Script>

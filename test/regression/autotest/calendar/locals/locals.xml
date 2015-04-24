@@ -1,0 +1,12 @@
+<Script>
+  <BeginTest>
+    <Arg>Locals</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>*</Arg>
+    <Arg>local</Arg>
+  </BeginTest>
+  <Include><Arg>c2s/c2s.xml</Arg></Include>
+  <Include><Arg>s2c/s2c.xml</Arg></Include>
+  <EndTest/>
+</Script>

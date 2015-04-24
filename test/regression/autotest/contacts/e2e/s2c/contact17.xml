@@ -1,0 +1,111 @@
+<Script>
+  <!-- SyncContacts17 -->
+  <!-- Add a record in the Contacts section both on the Server and on Device / Sync -->
+  <BeginTest>
+    <Arg>contact17</Arg>
+    <Arg>contact17</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- include in this test deleteall test file for delete all contacts on both sides -->
+  <Include><Arg>../deleteall.xml</Arg></Include>
+  <!-- Create on Server side a new Contact (Giuseppe Rossi) -->
+  <SaveContactOnServer>
+    <Arg>Giuseppe</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Create on Device side a new Contact (Luca Bianchi) -->
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>DisplayName</Arg>
+    <Arg>Luca</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg>Luca</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>Bianchi</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelOtherFax</Arg>
+    <Arg>123144566</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>EmailHome</Arg>
+    <Arg>luca.bianchi@gmail.com</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>EmailWork</Arg>
+    <Arg>luca.bianchi@work.com</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>EmailOther</Arg>
+    <Arg>luca.bianchi@other.com</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Birthday</Arg>
+    <Arg>1987-09-13</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Organization</Arg>
+    <Arg>Funambol;Testing</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Im</Arg>
+    <Arg>im@yahoo.com</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>AddressHome</Arg>
+    <Arg>post;via Bricchetti;street;Milano;Italy;24356;country</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>WebsiteHome</Arg>
+    <Arg>http://www.unipv.it/</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>WebsiteWork</Arg>
+    <Arg>http://www.myfunambol.com/</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Anniversary</Arg>
+    <Arg>2008-08-14</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Children</Arg>
+    <Arg>figlio1</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Spouse</Arg>
+    <Arg>spouse</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Title</Arg>
+    <Arg>i</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>Note</Arg>
+    <Arg>Prova</Arg>
+  </SetContactField>
+  <!-- SetContactField(Photo,"/data/data/com.android.contacts/immagine40.jpg") -->
+  <SaveContact/>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>200</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

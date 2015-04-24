@@ -1,0 +1,50 @@
+<Script>
+  <!-- AddFourRecords  -->
+  <!-- Add multiple records on the Server in the Contacts section / Sync -->
+  <BeginTest>
+    <Arg>addfourrecords</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- include in this test deleteall test file for delete all contacts on both sides -->
+  <Include><Arg>../deleteall.xml</Arg></Include>
+  <!-- Create on Server side a new Contact (Giuseppe Rossi) -->
+  <SaveContactOnServer>
+    <Arg>Giuseppe</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Create on Server side a new Contact (Mario Bianchi) -->
+  <SaveContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Bianchi</Arg>
+  </SaveContactOnServer>
+  <!-- Create on Server side a new Contact (Carlo Arancio) -->
+  <SaveContactOnServer>
+    <Arg>Carlo</Arg>
+    <Arg>Arancio</Arg>
+  </SaveContactOnServer>
+  <!-- Create on Server side a new Contact (Pallino Pinko) -->
+  <SaveContactOnServer>
+    <Arg>Pallino</Arg>
+    <Arg>Pinko</Arg>
+  </SaveContactOnServer>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>300</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test/src"/>
+	<classpathentry kind="src" path="externals/java-sdk/syncml/src/main/java"/>
+	<classpathentry kind="src" path="externals/java-sdk/common/src/main/java"/>
+	<classpathentry kind="src" path="externals/java-sdk/common/src/main/java-se"/>
+	<classpathentry kind="src" path="externals/java-sdk/common/src/main/java-se-android"/>
+	<classpathentry kind="src" path="externals/java-sdk/client/src/main/java"/>
+    <classpathentry kind="src" path="externals/java-sdk/sapisync/src/main/java"/>
+    <classpathentry kind="src" path="externals/java-sdk/sync/src/main/java"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry kind="lib" path="external-libs/joda-time-1.6.jar"/>
+	<classpathentry kind="lib" path="externals/java-sdk/syncml/lib/kxml2-2.3.0.jar"/>
+	<classpathentry kind="lib" path="external-libs/funambol-android-pim.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

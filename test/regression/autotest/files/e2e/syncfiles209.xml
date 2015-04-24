@@ -1,0 +1,80 @@
+<Script>
+  <BeginTest>
+    <Arg>syncfiles209</Arg>
+    <Arg>syncfiles209</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- 
+  
+    Scenario:
+      1) Add a file on client
+      2) Sync
+      3) Rename the file on server
+      4) Rename the file on client
+      5) Sync
+      
+    Expected:
+      The client rename wins
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <AddMedia>
+    <Arg>Files</Arg>
+    <Arg>../data/rename01.txt</Arg>
+  </AddMedia>
+
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <RenameMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>rename01.txt</Arg>
+    <Arg>rename01-server.txt</Arg>
+  </RenameMediaOnServer>
+  <RenameMedia>
+    <Arg>Files</Arg>
+    <Arg>rename01.txt</Arg>
+    <Arg>rename01-client.txt</Arg>
+  </RenameMedia>
+
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <!-- Check number of items on both sides -->
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- Check file integrity -->
+  <CheckMediaContentIntegrity>
+    <Arg>Files</Arg>
+    <Arg>rename01-client.txt</Arg>
+  </CheckMediaContentIntegrity>
+  
+  <EndTest/>
+</Script>

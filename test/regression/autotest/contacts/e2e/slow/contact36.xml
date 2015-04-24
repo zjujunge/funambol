@@ -1,0 +1,31 @@
+<Script>
+  <!-- SyncContacts36 -->
+  <!-- On server side add a record in the Contacts section filling in all possible fields / Slow Sync -->
+  <BeginTest><Arg>On server side add a record in the Contacts section filling in all possible fields / Slow Sync</Arg></BeginTest>
+  <!-- include in this test deleteall test file for delete all contacts on both sides -->
+  <Include><Arg>../deleteall.xml</Arg></Include>
+  <!-- Create on Server side a new Contact (Mario Rossi) -->
+  <SaveContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Force a Slow Sync -->
+  <ForceSlowSync><Arg>Contacts</Arg></ForceSlowSync>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

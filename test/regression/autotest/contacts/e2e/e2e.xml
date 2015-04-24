@@ -1,0 +1,16 @@
+<Script>
+  <BeginTest>
+    <Arg>Contacts End2End</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>c2s/c2s.xml</Arg></Include>
+  <Include><Arg>s2c/s2c.xml</Arg></Include>
+  <Include><Arg>slow/slow.xml</Arg></Include>
+  <Include><Arg>conflict/conflict.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

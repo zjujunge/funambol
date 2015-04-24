@@ -1,0 +1,203 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia403</Arg>
+    <Arg>syncmedia403</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- Set the sync to two ways for both pics and video -->
+  <Include><Arg>../../pictures/util/settwoways.xml</Arg></Include>
+  <Include><Arg>../../videos/util/settwoways.xml</Arg></Include>
+  
+  <!-- Include older pictures -->
+  <Include><Arg>../../pictures/util/toggleuploadolder.xml</Arg></Include>
+  <!-- Include older videos -->
+  <Include><Arg>../../videos/util/toggleuploadolder.xml</Arg></Include>
+
+  <!-- Clean everything -->
+  <Include><Arg>../../pictures/util/deleteall.xml</Arg></Include>
+  <Include><Arg>../../videos/util/deleteall.xml</Arg></Include>
+
+  <!-- Add 11 pictures on client -->
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img01.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img02.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img03.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img04.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img05.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img06.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img07.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img08.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img09.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img10.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img11.jpg</Arg>
+  </AddMedia>
+  
+  <!-- Add 3 videos on device -->
+  <AddMedia>
+    <Arg>Videos</Arg>
+    <Arg>../../videos/data/vid01.3gp</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Videos</Arg>
+    <Arg>../../videos/data/vid02.3gp</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Videos</Arg>
+    <Arg>../../videos/data/vid03.mp4</Arg>
+  </AddMedia>
+  
+  <!-- Add 2 pictures on server -->
+  <AddMediaOnServer>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img12.jpg</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img13.jpg</Arg>
+  </AddMediaOnServer>
+
+  <!-- Add 2 videos on server -->
+  <AddMediaOnServer>
+    <Arg>Videos</Arg>
+    <Arg>../../videos/data/vid04.mp4</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>Videos</Arg>
+    <Arg>../../videos/data/vid05.3gp</Arg>
+  </AddMediaOnServer>
+
+  <!-- Force First Sync -->
+  <Include><Arg>../../pictures/util/forcefirstsync.xml</Arg></Include>
+  
+  <!-- Prepare the sync to be interrupted while uploading -->
+  <!-- Under 2048 bytes the resume isn't correctly handled,
+       because of Android's http Apache library implementation -->
+  <InterruptItemUpload>
+    <Arg></Arg>
+    <Arg>2050</Arg>
+    <Arg>3</Arg>
+  </InterruptItemUpload>
+  
+  <!-- Perform the Picture sync -->
+  <Include><Arg>../../pictures/util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>10</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Pictures</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>Pictures</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- sync again and check that an item was properly resumed -->
+  <Include><Arg>../../pictures/util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg>9</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckResumedData>
+    <Arg>Pictures</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckResumedData>
+  <CheckSyncErrors>
+    <Arg>Pictures</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>Pictures</Arg>
+    <Arg>13</Arg>
+  </CheckMediaCountOnServer>
+  
+  <!-- Force First Sync -->
+  <Include><Arg>../../videos/util/forcefirstsync.xml</Arg></Include>
+  
+  <!-- Perform the Video sync -->
+  <Include><Arg>../../videos/util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>10</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Videos</Arg>
+    <Arg>3</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Videos</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>Videos</Arg>
+    <Arg>5</Arg>
+  </CheckMediaCountOnServer>
+
+  <EndTest>
+    <Include><Arg>../../pictures/util/toggleuploadolder.xml</Arg></Include>
+    <Include><Arg>../../videos/util/toggleuploadolder.xml</Arg></Include>
+  </EndTest>
+
+</Script>

@@ -1,0 +1,34 @@
+<Script>
+  <BeginTest><Arg>Sync29</Arg></BeginTest>
+  <Include><Arg>../c2s/sync02.xml</Arg></Include>
+  <!-- Update some fields from an event on device -->
+  <LoadEvent><Arg>Sync02</Arg></LoadEvent>
+  <SetEventField>
+    <Arg>Location</Arg>
+    <Arg>Paradise</Arg>
+  </SetEventField>
+  <SetEventField>
+    <Arg>Description</Arg>
+    <Arg>Welcome to Paradise!</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <!-- Delete data for the same fields on server -->
+  <SaveEventOnServer><Arg>Sync02</Arg></SaveEventOnServer>
+  <!-- Synchronization -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg> 120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg> 0</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

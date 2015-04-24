@@ -1,0 +1,15 @@
+<Script>
+  <BeginTest>
+    <Arg>Calendar Regression</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+  <!-- Include all the end to end tests -->
+  <Include><Arg>e2e/e2e.xml</Arg></Include>
+  <!-- Include("e2e/c2s_reminder.xml"); -->
+  <!-- Include all the local tests -->
+  <Include><Arg>locals/locals.xml</Arg></Include>
+  <EndTest/>
+</Script>

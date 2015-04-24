@@ -1,0 +1,44 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia210</Arg>
+    <Arg>syncmedia210</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- 
+       Load 4 items on client and sync with server. Then force a first sync and check the
+       exchanged data.
+       Twin detection should work and no items should be sent to server.
+  -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <Include><Arg>../util/addfourrecords.xml</Arg></Include>
+
+  <!-- Force First Sync -->
+  <Include><Arg>../util/forcefirstsync.xml</Arg></Include>
+  
+  <!-- Synchronize -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

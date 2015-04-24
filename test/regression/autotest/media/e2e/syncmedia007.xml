@@ -1,0 +1,54 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia007</Arg>
+    <Arg>syncmedia007</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!--
+     Have the same pictures on both sides, rename on device, sync and
+     check that no updates are exchanged
+  -->
+  <Include><Arg>../util/addfourrecords.xml</Arg></Include>
+
+  <!--
+     Rename one item
+  -->
+  <RenameMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item0}</Arg>
+    <Arg>${item0renamed}</Arg>
+  </RenameMedia>
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+     Synchronize
+  -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCountOnServer>
+
+  <EndTest/>
+</Script>

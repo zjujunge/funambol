@@ -1,0 +1,65 @@
+<Script>
+  <BeginTest>
+    <Arg>syncfiles208</Arg>
+    <Arg>syncfiles208</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- 
+  
+    Scenario:
+      1) Add a file with unicode encoded character on the server.
+      2) Sync to client
+      
+    Expected:
+      The renamed file from the MediaHub folder has been correctly 
+      sent to the portal.
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <AddMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>../data/rename01.txt</Arg>
+  </AddMediaOnServer>
+  <RenameMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>rename01.txt</Arg>
+    <Arg>a&#224;&#249;&amp;_&#x20A4;.txt</Arg>
+  </RenameMediaOnServer>
+
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <!-- Check number of items on both sides -->
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- Check file integrity -->
+  <CheckMediaContentIntegrity>
+    <Arg>Files</Arg>
+    <Arg>a&#224;&#249;&amp;_&#x20A4;.txt</Arg>
+  </CheckMediaContentIntegrity>
+  
+  <EndTest/>
+</Script>

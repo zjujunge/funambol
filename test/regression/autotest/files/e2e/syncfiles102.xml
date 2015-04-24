@@ -1,0 +1,81 @@
+<Script>
+  <BeginTest>
+    <Arg>syncfiles102</Arg>
+    <Arg>syncfiles102</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- 
+  
+    Scenario:
+      Add a txt file to the portal (e.g. using Windows Sync Client). Sync.
+      Update the file in order to change the file size. Sync.
+
+    Expected:
+      The updated file has been correctly received into the MediaHub folder.
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <AddMediaOnServer>
+    <Arg>Files</Arg>
+    <Arg>../data/file01</Arg>
+  </AddMediaOnServer>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <!-- check files also on server -->
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- update the file on server -->
+  <OverrideMediaContentOnServer>
+    <Arg>Files</Arg>
+    <Arg>file01</Arg>
+    <Arg>../data/file02</Arg>
+  </OverrideMediaContentOnServer>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <!-- check files also on server -->
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <EndTest/>
+</Script>

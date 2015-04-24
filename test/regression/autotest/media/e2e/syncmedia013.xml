@@ -1,0 +1,82 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia013</Arg>
+    <Arg>syncmedia013</Arg>
+    <Arg>${sourcename}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- 
+    Add items on server and sync. Make some modifications on server and sync. 
+  -->
+
+  <Include><Arg>../util//deleteall.xml</Arg></Include>
+
+  <!-- Add two pictures on client and sync them to server -->
+  <AddPicture><Arg>${datadirectory}/${item2}</Arg></AddPicture>
+  <AddPicture><Arg>${datadirectory}/${item3}</Arg></AddPicture>
+  
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCount>
+  
+  <!-- Modify some items: add and delete -->
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMediaOnServer>
+
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMediaOnServer>
+  <DeleteMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item2}</Arg>
+  </DeleteMediaOnServer>
+  <DeleteMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item3}</Arg>
+  </DeleteMediaOnServer>
+
+  <!-- Synchronize -->
+  <Include><Arg>${utildirectory}/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

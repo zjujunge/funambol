@@ -1,0 +1,30 @@
+<Script>
+
+  <!-- Toggle settings to Upload Older Pictures -->
+  <!-- Enter settings screen -->
+  <KeyPress><Arg>KeyMenu</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <!-- Find Pictures Sync Modes -->
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>7</Arg>
+  </KeyPress>
+
+  <!-- Toggle Pictures Sync Mode to Upload Older Pictures -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  
+  <!-- Save settings -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>10</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+</Script>

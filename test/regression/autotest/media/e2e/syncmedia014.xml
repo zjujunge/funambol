@@ -1,0 +1,57 @@
+<Script>
+  <BeginTest>
+    <Arg>Syncmedia 014</Arg>
+    <Arg>syncmedia014</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!--
+       This test checks the case where two different pictures with the same name
+       are available client/server side. The picture is expected to be
+       downloaded and renamed on the client and uploaded to the server
+  -->
+
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+  
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add new pictures -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMediaOnServer>
+  <OverrideMediaContent>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item0}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </OverrideMediaContent>
+
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCount>
+  
+  <EndTest/>
+</Script>

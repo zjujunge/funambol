@@ -1,0 +1,162 @@
+<Script>
+  <BeginTest>
+    <Arg>Videos regression</Arg>
+    <Arg>*</Arg>
+    <Arg>video</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+  </BeginTest>
+
+    <!-- Set all the variables -->
+  <SetVariable>
+    <Arg>datadirectory</Arg>
+    <Arg>../../videos/data</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>utildirectory</Arg>
+    <Arg>../../videos/util</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>sourcetag</Arg>
+    <Arg>video</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>sourcename</Arg>
+    <Arg>Videos</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item0</Arg>
+    <Arg>vid01.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item1</Arg>
+    <Arg>vid02.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item2</Arg>
+    <Arg>vid03.mp4</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item3</Arg>
+    <Arg>vid04.mp4</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item4</Arg>
+    <Arg>vid05.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item5</Arg>
+    <Arg>vid06.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item6</Arg>
+    <Arg>vid07.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item7</Arg>
+    <Arg>vid08.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item8</Arg>
+    <Arg>vid09.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item9</Arg>
+    <Arg>vid10.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item10</Arg>
+    <Arg>vid11.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item10</Arg>
+    <Arg>vid11.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item11</Arg>
+    <Arg>vid12.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>iteminvalid</Arg>
+    <Arg>vidinvalid.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item0renamed</Arg>
+    <Arg>vid01-renamed.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item1renamed</Arg>
+    <Arg>vid02-renamed.3gp</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>itembig0</Arg>
+    <Arg>vid03.mp4</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>itembig1</Arg>
+    <Arg>vid04.mp4</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>homebuttonposition</Arg>
+    <Arg>3</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>settingsdirectionposition</Arg>
+    <Arg>8</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>toggleuploaderposition</Arg>
+    <Arg>9</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>uploadeditems203</Arg>
+    <Arg>3</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>firstsyncuploadlimit</Arg>
+    <Arg>2</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item_not_supported_in_upload</Arg>
+    <Arg>vid01.avi</Arg>
+  </SetVariable>
+
+  <SetVariable>
+    <Arg>item_strange_name</Arg>
+    <Arg>a&#224;&#249;&amp;_&#x20A4;.3gp</Arg>
+  </SetVariable>
+
+  <!-- Clean up any possible leftovers from previous test -->
+  <RestoreLocalStorage/>
+
+  <Include><Arg>e2e/e2e.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

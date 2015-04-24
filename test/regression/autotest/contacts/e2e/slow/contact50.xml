@@ -1,0 +1,49 @@
+<Script>
+  <!-- SyncContacts50 -->
+  <!-- Delete all records from Contacts section on Device / Slow Sync -->
+  <BeginTest>
+    <Arg>Delete all records from Contacts section on Device / Slow Sync</Arg>
+    <Arg>contact50</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- This include create new multiple records of Contacts (Giuseppe Rossi, Mario Bianchi, Luca Bianchi, Pallino Pinko) and do a fast sync -->
+  <Include><Arg>../c2s/addfourrecords.xml</Arg></Include>
+  <!-- Delete all Contacts on Server side -->
+  <DeleteContactOnServer>
+    <Arg>Luca</Arg>
+    <Arg>Bianchi</Arg>
+  </DeleteContactOnServer>
+  <DeleteContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Bianchi</Arg>
+  </DeleteContactOnServer>
+  <DeleteContactOnServer>
+    <Arg>Giuseppe</Arg>
+    <Arg>Rossi</Arg>
+  </DeleteContactOnServer>
+  <DeleteContactOnServer>
+    <Arg>Pallino</Arg>
+    <Arg>Pinko</Arg>
+  </DeleteContactOnServer>
+  <!-- Force a Slow Sync -->
+  <ForceSlowSync><Arg>Contacts</Arg></ForceSlowSync>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

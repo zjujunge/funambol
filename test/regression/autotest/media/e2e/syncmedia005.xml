@@ -1,0 +1,97 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia005</Arg>
+    <Arg>syncmedia005</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Add pictures on server and download on device -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Change settings to Two-way Sync -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Add new pictures on portal -->
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMediaOnServer>
+
+  <!-- Synchronization -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item0}</Arg>
+  </CheckMediaContentIntegrity>
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item1}</Arg>
+  </CheckMediaContentIntegrity>
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item2}</Arg>
+  </CheckMediaContentIntegrity>
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item3}</Arg>
+  </CheckMediaContentIntegrity>
+  
+  <!-- 
+  Triggering another Synchronization to check no further item is exchanged
+  -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

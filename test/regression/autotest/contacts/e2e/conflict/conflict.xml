@@ -1,0 +1,17 @@
+<!--
+  Test Contacts Conflict Resolution
+-->
+
+<Script>
+  <BeginTest>
+    <Arg>Contacts Conflict Resolution</Arg>
+    <Arg>*</Arg>
+    <Arg>contact</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>contact28.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

@@ -1,0 +1,29 @@
+<Script>
+  <!--
+     Referring to testlist 4882_3
+  -->
+
+  <BeginTest><Arg>"4882_3 test case"</Arg></BeginTest>
+  <!--
+     Enable device Auto Sync and client C2S push
+  -->
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <!--
+    Check if Contacts and Pictures sources are enabled
+  -->
+  <CheckSourceAutoSyncEnabled>
+    <Arg>Contacts</Arg>
+    <Arg>true</Arg>
+  </CheckSourceAutoSyncEnabled>
+  <CheckSourceAutoSyncEnabled>
+    <Arg>Pictures</Arg>
+    <Arg>true</Arg>
+  </CheckSourceAutoSyncEnabled>
+
+  <Wait><Arg>2</Arg></Wait>
+  <Include ><Arg>push_change_c2s_setting.xml</Arg></Include>
+
+  <EndTest/>
+
+</Script>

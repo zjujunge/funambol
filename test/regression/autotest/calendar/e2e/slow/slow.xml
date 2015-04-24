@@ -1,0 +1,8 @@
+<Script>
+  <BeginTest><Arg>Calendar End2End Slow Sync</Arg></BeginTest>
+  <Include><Arg>sync50.xml</Arg></Include>
+  <Include><Arg>sync52.xml</Arg></Include>
+  <Include><Arg>sync56.xml</Arg></Include>
+  <Include><Arg>sync58.xml</Arg></Include>
+  <EndTest/>
+</Script>

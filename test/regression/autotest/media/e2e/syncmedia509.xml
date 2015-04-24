@@ -1,0 +1,80 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia509</Arg>
+    <Arg>syncmedia509</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Set the sync to two ways for pics -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add one pic on the server -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+
+  <!-- Prepare the sync to be interrupted while downloading -->
+  <InterruptItemUpload>
+    <Arg>${item0}</Arg>
+    <Arg>2050</Arg>
+  </InterruptItemUpload>
+ 
+  <!-- Sync everything -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Check the status for the pics source -->
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCountOnServer>
+
+  <DeleteMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item0}</Arg>
+  </DeleteMedia>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <!-- Check the status for the media source -->
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCountOnServer>
+
+</Script>

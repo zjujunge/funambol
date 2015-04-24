@@ -1,0 +1,35 @@
+<Script>
+  <BeginTest><Arg>Sync56</Arg></BeginTest>
+  <Include><Arg>sync50.xml</Arg></Include>
+  <!-- Update a Sync50's event on device -->
+  <LoadEvent><Arg>Sync50_01</Arg></LoadEvent>
+  <SetEventField>
+    <Arg>Location</Arg>
+    <Arg>Pavia</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <!-- Delete a Sync50's event on device -->
+  <DeleteEvent><Arg>Sync50_02</Arg></DeleteEvent>
+  <!-- Force a slow sync -->
+  <ForceSlowSync><Arg>Calendar</Arg></ForceSlowSync>
+  <!-- Synchronize -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckEventsCount>
+    <Arg> 3</Arg>
+  </CheckEventsCount>
+  <EndTest/>
+</Script>

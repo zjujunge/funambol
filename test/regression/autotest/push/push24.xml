@@ -1,0 +1,103 @@
+<Script>
+  <!--
+    test list 4882_21
+  -->
+  <BeginTest >
+    <Arg>"push24 - verified when a manually sync is started must not be interrupted by sync from push</Arg>
+    <Arg> and when manually sync finished sync from push started"</Arg>
+  </BeginTest >
+
+  <!--
+    Add pictures
+  -->
+  <AddPicture><Arg>test-picture-1.jpg</Arg></AddPicture>
+  <AddPicture><Arg>test-picture-2.jpg</Arg></AddPicture>
+  <AddPicture><Arg>test-picture-3.jpg</Arg></AddPicture>
+  <AddPicture><Arg>test-picture-4.jpg</Arg></AddPicture>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+    Enable c2s settings
+  -->
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <!--
+     Attempting to start pictures sync manually
+  -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <CreateEmptyContact/>
+  <SetContactField>
+    <Arg>FirstName</Arg>
+    <Arg> Test</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>LastName</Arg>
+    <Arg>  Contact</Arg>
+  </SetContactField>
+  <SetContactField>
+    <Arg>TelHome</Arg>
+    <Arg>   0382665765979</Arg>
+  </SetContactField>
+  <SaveContact/>
+
+  <WaitForSyncToComplete>
+    <Arg>Pictures</Arg>
+    <Arg> 30</Arg>
+    <Arg> 300</Arg>
+  </WaitForSyncToComplete>
+
+  <WaitForSyncToComplete>
+    <Arg>Contacts</Arg>
+    <Arg> 10</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg> 1</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Include ><Arg>push_change_c2s_setting.txt</Arg></Include >
+
+  <!--
+     Remove all the picture we added before and sync
+  -->
+  <DeletePicture><Arg>test-picture-1.jpg</Arg></DeletePicture>
+  <DeletePicture><Arg>test-picture-2.jpg</Arg></DeletePicture>
+  <DeletePicture><Arg>test-picture-3.jpg</Arg></DeletePicture>
+  <DeletePicture><Arg>test-picture-4.jpg</Arg></DeletePicture>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <WaitForSyncToComplete>
+    <Arg>Pictures</Arg>
+    <Arg> 5</Arg>
+    <Arg> 180</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 4</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+    <Arg> 0</Arg>
+  </CheckExchangedData>
+
+  <Wait><Arg>2</Arg></Wait>
+
+  <EndTest />
+</Script>

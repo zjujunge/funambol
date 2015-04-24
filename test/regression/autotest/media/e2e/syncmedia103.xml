@@ -1,0 +1,100 @@
+<Script>
+  <BeginTest>
+    <Arg>Test for picture sync when local storage is filled</Arg>
+    <Arg>syncmedia103</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <!-- Add a picture on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+
+  <FillLocalStorage/>
+  <!--  Local storage is now FULL -->
+
+  <!-- Add three records on server -->
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMediaOnServer>
+
+  <!-- Synchronize -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  
+  <Wait><Arg>15</Arg></Wait>
+  
+  <!--  Dismiss pop-up dialog box -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!--  The download has failed because the storage is full, but one upload has
+        been performed
+  -->
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg> <!--  After the first attempt, the download is stopped -->
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <CheckSyncStatusCode>
+    <Arg>${sourcename}</Arg>
+    <Arg>154</Arg> <!--  LOCAL_CLIENT_FULL_ERROR -->
+  </CheckSyncStatusCode>
+
+  <RestoreLocalStorage/>
+  <!--  Local storage is now AVAILABLE again -->
+  
+  <!-- Synchronize again -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!--  The download has succeeded -->
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>3</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+  <CheckSyncStatusCode>
+    <Arg>${sourcename}</Arg>
+    <Arg>128</Arg> <!--  SUCCESS -->
+  </CheckSyncStatusCode>
+
+  <EndTest/>
+</Script>

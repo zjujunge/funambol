@@ -1,0 +1,117 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia506</Arg>
+    <Arg>syncmedia506</Arg>
+    <Arg>*</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- Set the sync to two ways for both pics and video -->
+  <Include><Arg>../../pictures/util/settwoways.xml</Arg></Include>
+  <Include><Arg>../../videos/util/settwoways.xml</Arg></Include>
+
+  <!-- Clean everything (both pics and videos) -->
+  <Include><Arg>../../pictures/util/deleteall.xml</Arg></Include>
+  <Include><Arg>../../videos/util/deleteall.xml</Arg></Include>
+
+  <!-- Add a couple of pics on the server -->
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img01.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Pictures</Arg>
+    <Arg>../../pictures/data/img02.jpg</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Videos</Arg>
+    <Arg>../../videos/data/vid01.3gp</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>Videos</Arg>
+    <Arg>../../videos/data/vid02.3gp</Arg>
+  </AddMedia>
+
+  <!-- Prepare the sync to be interrupted while downloading -->
+  <!-- Under 2048 bytes the resume isn't correctly handled,
+       because of Android's http Apache library implementation -->
+  <InterruptItemUpload>
+    <Arg></Arg>
+    <Arg>2050</Arg>
+    <Arg>2</Arg>
+  </InterruptItemUpload>
+ 
+  <!-- Sync everything -->
+  <SyncAll/>
+  <!-- We expect 3 syncs (contacts, calendar and pics) -->
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>240</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Check the status for the pics source -->
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Pictures</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckMediaCountOnServer>
+    <Arg>Pictures</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- sync again and check that an item was properly resumed -->
+  <SyncAll/>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>240</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Pictures</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>Pictures</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+  <CheckResumedData>
+    <Arg>Pictures</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckResumedData>
+  <CheckMediaCountOnServer>
+    <Arg>Pictures</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCountOnServer>
+
+  <CheckExchangedData>
+    <Arg>Videos</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCountOnServer>
+    <Arg>Videos</Arg>
+    <Arg>2</Arg>
+  </CheckMediaCountOnServer>
+
+</Script>

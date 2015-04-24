@@ -1,0 +1,40 @@
+<Script>
+  <!-- SyncContacts22 -->
+  <!-- On the Server add one record and modify one record in the Contacts section / Sync -->
+  <BeginTest>
+    <Arg>contact22</Arg>
+    <Arg>contact22</Arg>
+    <Arg>contact</Arg>
+    <Arg>s2c</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  <!-- This include create new multiple records of Contacts (Giuseppe Rossi, Mario Bianchi, Carlo Arancio, Pallino Pinko) and do a fast sync -->
+  <Include><Arg>addfourrecords.xml</Arg></Include>
+  <!-- Create on Server side a new Contact (Mario Rossi) -->
+  <SaveContactOnServer>
+    <Arg>Mario</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Update Giuseppe Rossi -->
+  <SaveContactOnServer>
+    <Arg>Giuseppe</Arg>
+    <Arg>Rossi</Arg>
+  </SaveContactOnServer>
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>200</Arg>
+  </WaitForSyncToComplete>
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

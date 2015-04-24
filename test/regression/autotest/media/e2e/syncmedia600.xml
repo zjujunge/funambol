@@ -1,0 +1,86 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia600</Arg>
+    <Arg>syncmedia600</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!--
+     Download only 
+  -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add 2 pictures on server and 2 pictures on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMediaOnServer>
+
+  <!--
+     Force First Sync
+  -->
+  <ForceSlowSync><Arg>${sourcename}</Arg></ForceSlowSync>
+  <ResetFirstRunTimestamp/>
+  <CloseMainApp/>
+  <StartMainApp/>
+  
+  <Include><Arg>../util/setdownload.xml</Arg></Include>
+
+  <!-- Synchronize -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Pictures</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+  <Wait><Arg>1</Arg></Wait>
+  
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+  <!-- Synchronize: it's like a first sync for the upload, so I should send up to 10 pictures -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+    <WaitForSyncToComplete>
+      <Arg>5</Arg>
+      <Arg>120</Arg>
+    </WaitForSyncToComplete>
+    <CheckExchangedData>
+      <Arg>${sourcename}</Arg>
+      <Arg>2</Arg>
+      <Arg>0</Arg>
+      <Arg>0</Arg>
+      <Arg>0</Arg>
+      <Arg>0</Arg>
+      <Arg>0</Arg>
+    </CheckExchangedData>
+    <CheckMediaCount>
+      <Arg>Pictures</Arg>
+      <Arg>4</Arg>
+    </CheckMediaCount>
+
+  <EndTest/>
+</Script>

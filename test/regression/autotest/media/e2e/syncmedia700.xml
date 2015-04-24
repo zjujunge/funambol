@@ -1,0 +1,59 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia700</Arg>
+    <Arg>syncmedia700</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!--
+       1) Creates two pictures on the client, one valid and the other invalid
+          (not a real pic)
+       2) sync to server
+       
+       Expected result:
+
+       the sync terminates with success and one item has been sent with success
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add new items -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${iteminvalid}</Arg>
+  </AddMedia>
+
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCountOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+  <CheckSyncStatusCode>
+    <Arg>${sourcename}</Arg>
+    <Arg>128</Arg> <!--  SUCCESS -->
+  </CheckSyncStatusCode>
+  
+  <EndTest/>
+</Script>

@@ -1,0 +1,95 @@
+<Script>
+  <BeginTest>
+    <Arg>syncfiles200</Arg>
+    <Arg>syncfiles200</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- 
+  
+    Scenario:
+      Add a txt file to the MediaHub folder. Sync.
+      Update the file from the MediaHub folder. 
+      Update the file on the portal. 
+      Sync.
+
+    Expected:
+      The updated file from the portal has been correctly received into the 
+      MediaHub folder.
+
+  -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+  <AddMedia>
+    <Arg>Files</Arg>
+    <Arg>../data/file01</Arg>
+  </AddMedia>
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <!-- check files also on server -->
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <!-- update the file locally -->
+  <OverrideMediaContent>
+    <Arg>Files</Arg>
+    <Arg>file01</Arg>
+    <Arg>../data/file02</Arg>
+  </OverrideMediaContent>
+  <!-- update the file on server -->
+  <OverrideMediaContentOnServer>
+    <Arg>Files</Arg>
+    <Arg>file01</Arg>
+    <Arg>../data/file03</Arg>
+  </OverrideMediaContentOnServer>
+
+  <!-- 
+       We have an upd/upd conflict that shall be won by the server who has the
+       most recent change
+  -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Files</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCount>
+  <!-- check files also on server -->
+  <CheckMediaCountOnServer>
+    <Arg>Files</Arg>
+    <Arg>1</Arg>
+  </CheckMediaCountOnServer>
+
+  <EndTest/>
+</Script>

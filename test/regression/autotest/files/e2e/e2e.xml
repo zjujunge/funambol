@@ -1,0 +1,58 @@
+<Script>
+  <BeginTest>
+    <Arg>Files end to end</Arg>
+    <Arg>*</Arg>
+    <Arg>file</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>incremental01.xml</Arg></Include>
+  <Include><Arg>incremental02.xml</Arg></Include>
+  <Include><Arg>incremental03.xml</Arg></Include>
+  <Include><Arg>incremental05.xml</Arg></Include>
+  <Include><Arg>incremental06.xml</Arg></Include>
+  
+  <Include><Arg>syncfiles100.xml</Arg></Include>
+  <Include><Arg>syncfiles101.xml</Arg></Include>
+  <Include><Arg>syncfiles102.xml</Arg></Include>
+  <Include><Arg>syncfiles103.xml</Arg></Include>
+  <Include><Arg>syncfiles104.xml</Arg></Include>
+  <Include><Arg>syncfiles105.xml</Arg></Include>
+
+  <!--
+       This test has been modified to accomodate the current behavior where
+       deletes are not propagated. Will be changed once requirements change
+  -->
+  <Include><Arg>syncfiles106.xml</Arg></Include>
+  <Include><Arg>syncfiles107.xml</Arg></Include>
+  <Include><Arg>syncfiles108.xml</Arg></Include>
+  <Include><Arg>syncfiles109.xml</Arg></Include>
+  <Include><Arg>syncfiles110.xml</Arg></Include>
+  <!--
+       This test has been modified to accomodate the current behavior where
+       deletes are not propagated. Will be changed once requirements change
+  -->
+  <Include><Arg>syncfiles111.xml</Arg></Include>
+  
+  <Include><Arg>syncfiles200.xml</Arg></Include>
+  <Include><Arg>syncfiles201.xml</Arg></Include>
+  <Include><Arg>syncfiles202.xml</Arg></Include>
+  <Include><Arg>syncfiles203.xml</Arg></Include>
+  <Include><Arg>syncfiles204.xml</Arg></Include>
+  <Include><Arg>syncfiles205.xml</Arg></Include>
+  <Include><Arg>syncfiles206.xml</Arg></Include>
+  <Include><Arg>syncfiles208.xml</Arg></Include>
+  <Include><Arg>syncfiles209.xml</Arg></Include>
+  
+  <Include><Arg>syncmedia400.xml</Arg></Include>
+  <Include><Arg>syncmedia401.xml</Arg></Include>
+  <Include><Arg>syncmedia502.xml</Arg></Include>
+  <Include><Arg>syncmedia503.xml</Arg></Include>
+  <Include><Arg>syncmedia508.xml</Arg></Include>
+  <Include><Arg>syncmedia509.xml</Arg></Include>
+
+  <Include><Arg>maxfilesizeupload.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

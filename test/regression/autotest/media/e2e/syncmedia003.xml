@@ -1,0 +1,94 @@
+<Script>
+  <BeginTest>
+    <Arg>SyncMedia003</Arg>
+    <Arg>syncmedia003</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- Add new pictures on client and sync them to server -->
+
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add new items -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMedia>
+
+  <!-- Synchronization -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item0}</Arg>
+  </CheckMediaContentIntegrity>
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item1}</Arg>
+  </CheckMediaContentIntegrity>
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item2}</Arg>
+  </CheckMediaContentIntegrity>
+  <CheckMediaContentIntegrity>
+    <Arg>${sourcename}</Arg>
+    <Arg>${item3}</Arg>
+  </CheckMediaContentIntegrity>
+
+  <!-- 
+  Triggering a Synchronization to check no further item is eschanged
+  -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>4</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

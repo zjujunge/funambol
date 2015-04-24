@@ -1,0 +1,46 @@
+<!--
+  SyncContacts08
+  On Device delete data from a field for a record in the Contacts section / Sync
+-->
+
+<Script>
+  <BeginTest>
+    <Arg>contact08</Arg>
+    <Arg>contact08</Arg>
+    <Arg>contact</Arg>
+    <Arg>c2s</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <!-- This include create a new Contact (Luca Bianchi) and do a fast sync -->
+  <Include><Arg>addonerecord.xml</Arg></Include>
+
+  <!-- Load a Contact on Device side and delete data from a field of this -->
+  <LoadContact>
+    <Arg>Luca</Arg>
+    <Arg>Bianchi</Arg>
+  </LoadContact>
+
+  <EmptyContactField><Arg>Website</Arg></EmptyContactField>
+  <SaveContact/>
+
+  <!-- Fire the synchronization and wait that is complete -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Verify an Exchanged Data [format: (add_client,updated_client,deleted_client,add_server,updated_server,deleted_server)] -->
+  <CheckExchangedData>
+    <Arg>Contacts</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+
+  <EndTest/>
+</Script>

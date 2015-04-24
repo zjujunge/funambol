@@ -1,0 +1,28 @@
+<Script>
+  <BeginTest><Arg>Sync04</Arg></BeginTest>
+  <Include><Arg>sync02.xml</Arg></Include>
+  <!-- Update field from an event -->
+  <LoadEvent><Arg>Sync02</Arg></LoadEvent>
+  <SetEventField>
+    <Arg>Summary</Arg>
+    <Arg>Sync04</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <!-- Synchronize -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>0</Arg>
+    <Arg>1</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <EndTest/>
+</Script>

@@ -1,0 +1,45 @@
+<Script>
+  <BeginTest><Arg>Sync52</Arg></BeginTest>
+  <Include><Arg>sync50.xml</Arg></Include>
+  <!-- Update Sync50's events on device -->
+  <LoadEvent><Arg>Sync50_01</Arg></LoadEvent>
+  <SetEventField>
+    <Arg>Location</Arg>
+    <Arg>Funambol</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <LoadEvent><Arg>Sync50_02</Arg></LoadEvent>
+  <SetEventField>
+    <Arg>Location</Arg>
+    <Arg>Funambol</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <LoadEvent><Arg>Sync50_03</Arg></LoadEvent>
+  <SetEventField>
+    <Arg>Location</Arg>
+    <Arg>Funambol</Arg>
+  </SetEventField>
+  <SaveEvent/>
+  <!-- Force a slow sync -->
+  <ForceSlowSync><Arg>Calendar</Arg></ForceSlowSync>
+  <!-- Synchronize -->
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>0</Arg>
+    <Arg>3</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>3</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckEventsCount>
+    <Arg> 3</Arg>
+  </CheckEventsCount>
+  <EndTest/>
+</Script>

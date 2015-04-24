@@ -1,0 +1,221 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia211</Arg>
+    <Arg>syncmedia211</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+   <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- 
+       Set two-way sync.
+       Load 4 pictures on device, 4 pictures on sever and start a First Sync. 
+  -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item3}</Arg>
+  </AddMedia>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item4}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item5}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item6}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item7}</Arg>
+  </AddMediaOnServer>
+  <!-- Force First Sync -->
+  <ForceSlowSync><Arg>${sourcename}</Arg></ForceSlowSync>
+  <ResetFirstRunTimestamp/>
+  <CloseMainApp/>
+  <StartMainApp/>
+  <!-- Synchronize -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  
+  <Wait>
+    <Arg>1</Arg>
+  </Wait> 
+
+  <!-- The number of items depend on the SS because on first sync we have
+       different limits
+  -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${sourcename}</Arg>
+        <Arg>Pictures</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <SetVariable>
+        <Arg>num_items_sent_first_sync_211</Arg>
+        <Arg>4</Arg>
+      </SetVariable>
+      <SetVariable>
+        <Arg>num_items_after_first_sync_tablet_211</Arg>
+        <Arg>8</Arg>
+      </SetVariable>
+    </Then>
+    <Else>
+      <SetVariable>
+        <Arg>num_items_sent_first_sync_211</Arg>
+        <Arg>2</Arg>
+      </SetVariable>
+      <SetVariable>
+        <Arg>num_items_after_first_sync_tablet_211</Arg>
+        <Arg>6</Arg>
+      </SetVariable>
+    </Else>
+  </Condition>
+ 
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicetype}</Arg>
+        <Arg>phone</Arg>
+      </Equals>
+    </If>
+    <Then>
+       <CheckExchangedData>
+          <Arg>${sourcename}</Arg>
+          <Arg>${num_items_sent_first_sync_211}</Arg>
+          <Arg>0</Arg>
+          <Arg>0</Arg>
+          <Arg>0</Arg>
+          <Arg>0</Arg>
+          <Arg>0</Arg>
+       </CheckExchangedData>
+     <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>4</Arg>
+      </CheckMediaCount>
+    </Then>
+    <Else>
+      <CheckExchangedData>
+        <Arg>${sourcename}</Arg>
+        <Arg>${num_items_sent_first_sync_211}</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+        <Arg>4</Arg>
+        <Arg>0</Arg>
+        <Arg>0</Arg>
+      </CheckExchangedData>
+      <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>${num_items_after_first_sync_tablet_211}</Arg>
+      </CheckMediaCount>
+    </Else>
+  </Condition>
+  
+  
+  <!--
+  Add pictures again both on client and on server. Sync. New items added are now exchanged (both phone and tablet)
+  -->
+  
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item8}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item9}</Arg>
+  </AddMedia>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item10}</Arg>
+  </AddMediaOnServer>
+  <AddMediaOnServer>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item11}</Arg>
+  </AddMediaOnServer>
+  <!-- Synchronize -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+
+  <!-- The number of items depend on the SS because on first sync we have
+       different limits
+  -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${sourcename}</Arg>
+        <Arg>Pictures</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <SetVariable>
+        <Arg>numitemsaftersecondsynctablet211</Arg>
+        <Arg>12</Arg>
+      </SetVariable>
+    </Then>
+    <Else>
+      <SetVariable>
+        <Arg>numitemsaftersecondsynctablet211</Arg>
+        <Arg>8</Arg>
+      </SetVariable>
+    </Else>
+  </Condition>
+  
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${devicetype}</Arg>
+        <Arg>phone</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>8</Arg>
+      </CheckMediaCount>
+    </Then>
+    <Else>
+      <CheckMediaCount>
+        <Arg>${sourcename}</Arg>
+        <Arg>${numitemsaftersecondsynctablet211}</Arg>
+      </CheckMediaCount>
+    </Else>
+  </Condition>
+  
+  <EndTest/>
+</Script>

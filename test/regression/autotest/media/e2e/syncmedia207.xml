@@ -1,0 +1,114 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia207</Arg>
+    <Arg>syncmedia207</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+  
+  <!-- Set the sync to two ways for both pics -->
+  <Include><Arg>../util/settwoways.xml</Arg></Include>
+  
+  <!-- Include older pictures -->
+  <Include><Arg>../util/toggleuploadolder.xml</Arg></Include>
+
+  <!-- Clean everything -->
+  <Include><Arg>../util/deleteall.xml</Arg></Include>
+
+  <!-- Add enough items on client -->
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item0}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item1}</Arg>
+  </AddMedia>
+  <AddMedia>
+    <Arg>${sourcename}</Arg>
+    <Arg>${datadirectory}/${item2}</Arg>
+  </AddMedia>
+
+  <!-- There is a difference depending on the source -->
+  <Condition>
+    <If>
+      <Equals>
+        <Arg>${sourcename}</Arg>
+        <Arg>Pictures</Arg>
+      </Equals>
+    </If>
+    <Then>
+      <AddMedia>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item3}</Arg>
+      </AddMedia>
+      <AddMedia>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item4}</Arg>
+      </AddMedia>
+      <AddMedia>
+        <Arg>${sourcename}</Arg>
+        <Arg>${datadirectory}/${item5}</Arg>
+      </AddMedia>
+      <SetVariable>
+        <Arg>numitems207</Arg>
+        <Arg>6</Arg>
+      </SetVariable>
+    </Then>
+    <Else>
+      <SetVariable>
+        <Arg>numitems207</Arg>
+        <Arg>3</Arg>
+      </SetVariable>
+    </Else>
+  </Condition>
+  
+  <!-- Force a First Sync -->
+  <ForceSlowSync><Arg>${sourcename}</Arg></ForceSlowSync>
+  <ResetFirstRunTimestamp/>
+  <CloseMainApp/>
+  <StartMainApp/>
+
+  <!-- Perform the media sync -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>10</Arg>
+    <Arg>300</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>${numitems207}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckSyncErrors>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckSyncErrors>
+
+  <!-- sync again and check that no item is sent again -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+
+  <!-- Restore the setting to their original value -->
+  <EndTest>
+    <Arg>../util/toggleuploadolder.xml</Arg>
+  </EndTest>
+</Script>

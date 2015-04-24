@@ -1,0 +1,50 @@
+<Script>
+  <BeginTest>
+    <Arg>Calendar Recurrences C2S</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>c2s</Arg>
+    <Arg>local</Arg>
+  </BeginTest>
+
+  <!-- Daily events -->
+  <Include><Arg>daily_noend.xml</Arg></Include>
+  <Include><Arg>daily_noend_allday.xml</Arg></Include>
+  <Include><Arg>daily_enddate.xml</Arg></Include>
+  <Include><Arg>daily_enddate_allday.xml</Arg></Include>
+
+  <!-- Weekly events -->
+  <Include><Arg>weekly_noend.xml</Arg></Include>
+  <Include><Arg>weekly_noend_allday.xml</Arg></Include>
+  <Include><Arg>weekly_enddate.xml</Arg></Include>
+  <Include><Arg>weekly_enddate_allday.xml</Arg></Include>
+  <Include><Arg>weekly_wkd_noend.xml</Arg></Include>
+  <Include><Arg>weekly_wkd_noend_allday.xml</Arg></Include>
+  <Include><Arg>weekly_wkd_enddate.xml</Arg></Include>
+  <Include><Arg>weekly_wkd_enddate_allday.xml</Arg></Include>
+
+  <!-- Monthly events -->
+  <Include><Arg>monthly_noend.xml</Arg></Include>
+  <Include><Arg>monthly_noend_allday.xml</Arg></Include>
+  <Include><Arg>monthly_enddate.xml</Arg></Include>
+  <Include><Arg>monthly_enddate_allday.xml</Arg></Include>
+  <Include><Arg>monthly_enddate_allday_multidays.xml</Arg></Include>
+  <Include><Arg>monthly_enddate_multidays.xml</Arg></Include>
+  <Include><Arg>monthly_nth_noend.xml</Arg></Include>
+  <Include><Arg>monthly_nth_noend_allday.xml</Arg></Include>
+  <Include><Arg>monthly_nth_enddate.xml</Arg></Include>
+  <Include><Arg>monthly_nth_enddate_allday.xml</Arg></Include>
+
+  <!-- Yearly events -->
+  <Include><Arg>yearly_noend.xml</Arg></Include>
+  <Include><Arg>yearly_noend_allday.xml</Arg></Include>
+  <Include><Arg>yearly_enddate.xml</Arg></Include>
+  <Include><Arg>yearly_enddate_allday.xml</Arg></Include>
+
+  <!-- Content events -->
+  <Include><Arg>sync33.xml</Arg></Include>
+  <Include><Arg>sync34.xml</Arg></Include>
+
+  <EndTest/>
+
+</Script>

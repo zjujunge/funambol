@@ -1,0 +1,20 @@
+<Script>
+  <BeginTest>
+    <Arg>Specific languages S2C</Arg>
+    <Arg>*</Arg>
+    <Arg>calendar</Arg>
+    <Arg>s2c</Arg>
+    <Arg>local</Arg>
+  </BeginTest>
+
+  <Include><Arg>arabic.xml</Arg></Include>
+  <Include><Arg>chinese.xml</Arg></Include>
+  <Include><Arg>deutsch.xml</Arg></Include>
+  <Include><Arg>espanol.xml</Arg></Include>
+  <Include><Arg>francaise.xml</Arg></Include>
+  <Include><Arg>italian.xml</Arg></Include>
+  <Include><Arg>portugues.xml</Arg></Include>
+  <Include><Arg>russian.xml</Arg></Include>
+
+  <EndTest/>
+</Script>

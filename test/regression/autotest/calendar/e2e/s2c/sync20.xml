@@ -1,0 +1,58 @@
+<Script>
+  <BeginTest><Arg>Sync20</Arg></BeginTest>
+  <Include><Arg>../deleteall.xml</Arg></Include>
+  <!-- Create four events on the server. This is needed to have the update and the -->
+  <!-- delete -->
+  <SaveEventOnServer><Arg>Sync18_upd</Arg></SaveEventOnServer>
+  <SaveEventOnServer><Arg>Sync18_del</Arg></SaveEventOnServer>
+  <SaveEventOnServer><Arg>Sync18_upd2</Arg></SaveEventOnServer>
+  <SaveEventOnServer><Arg>Sync18_del2</Arg></SaveEventOnServer>
+  <!-- Perform a sync -->
+  <KeyPress>
+    <Arg>KeyUp</Arg>
+    <Arg>5</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>1</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <!-- Now finalize the test -->
+  <SaveEventOnServer><Arg>Sync18_add</Arg></SaveEventOnServer>
+  <SaveEventOnServer><Arg>Sync18_add2</Arg></SaveEventOnServer>
+  <DeleteEventOnServer><Arg>Sync18_del</Arg></DeleteEventOnServer>
+  <DeleteEventOnServer><Arg>Sync18_del2</Arg></DeleteEventOnServer>
+  <SaveEventOnServer><Arg>Sync18_upd</Arg></SaveEventOnServer>
+  <SaveEventOnServer><Arg>Sync18_upd2</Arg></SaveEventOnServer>
+  <!-- Perform a sync -->
+  <KeyPress>
+    <Arg>KeyUp</Arg>
+    <Arg>5</Arg>
+  </KeyPress>
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>1</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+  <CheckExchangedData>
+    <Arg>Calendar</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>2</Arg>
+    <Arg>2</Arg>
+    <Arg>2</Arg>
+  </CheckExchangedData>
+  <CheckEventsCount>
+    <Arg>4</Arg>
+  </CheckEventsCount>
+  <EndTest/>
+</Script>

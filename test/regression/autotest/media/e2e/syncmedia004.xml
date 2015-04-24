@@ -1,0 +1,40 @@
+<Script>
+  <BeginTest>
+    <Arg>syncmedia004</Arg>
+    <Arg>syncmedia004</Arg>
+    <Arg>${sourcetag}</Arg>
+    <Arg>*</Arg>
+    <Arg>e2e</Arg>
+  </BeginTest>
+
+  <Include><Arg>../util/addfourrecords.xml</Arg></Include>
+
+  <!-- Delete all pictures -->
+  <DeleteAllMedia>
+    <Arg>${sourcename}</Arg>
+  </DeleteAllMedia>
+  
+  <!-- Synchronize -->
+  <Include><Arg>../util/firesync.xml</Arg></Include>
+  <WaitForSyncToComplete>
+    <Arg>5</Arg>
+    <Arg>120</Arg>
+  </WaitForSyncToComplete>
+
+  <!-- Delete are not being propagated from client to server -->
+  <CheckExchangedData>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+    <Arg>0</Arg>
+  </CheckExchangedData>
+  <CheckMediaCount>
+    <Arg>${sourcename}</Arg>
+    <Arg>0</Arg>
+  </CheckMediaCount>
+
+  <EndTest/>
+</Script>

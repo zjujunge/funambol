@@ -1,0 +1,38 @@
+<Script>
+  <!--
+     Enable native auto sync
+  -->
+  <SetAutoSyncEnabled><Arg>true</Arg></SetAutoSyncEnabled>
+
+  <!--
+     Enter settings screen
+  -->
+  <KeyPress><Arg>KeyMenu</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <!--
+     Find C2S push setting
+  -->
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyUp</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyLeft</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+  <KeyPress><Arg>KeyDown</Arg></KeyPress>
+
+  <!--
+     Enable/Disable C2S Push
+  -->
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+
+  <!--
+     Save settings
+  -->
+  <KeyPress>
+    <Arg>KeyDown</Arg>
+    <Arg>10</Arg>
+  </KeyPress>
+  <KeyPress><Arg>KeyFire</Arg></KeyPress>
+</Script>
